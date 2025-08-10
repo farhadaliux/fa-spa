@@ -252,23 +252,40 @@ function cardMini(title, i){
 }
 
 function workCard(w){
-  const lock = w.passwordProtected ? '<span aria-hidden="true">🔒</span> ' : '';
-  const overlay = w.passwordProtected ? '<span class="muted">Request Access</span>' : '<a href="#/work/'+w.slug+'">View →</a>';
-  const thumbStyle = `background:url('${w.heroImage}') center/cover, var(--surface-alt)`;
+  const locked = !!w.passwordProtected;
+  const ctaLabel = locked ? "Enter Password" : "View Case Study";
+  const ctaHref  = `#/work/${w.slug}`;
+
+  // Fallbacks
+  const sub = w.subtitle || "";
+  const tags = (w.tags || []).slice(0,4);
+
   return `
-    <article class="card">
-      <div class="thumb" style="${thumbStyle}">
-        <div class="overlay">${overlay}</div>
+    <article class="work-card" role="article">
+      <div class="copy">
+        ${locked ? `<div class="eyebrow">🔒 Protected</div>` : ``}
+        <h3 class="title">
+          <a href="${ctaHref}" style="color:inherit; text-decoration:none;">
+            ${w.title}
+          </a>
+        </h3>
+        ${sub ? `<p class="sub">${sub}</p>` : ``}
+        <a class="cta" href="${ctaHref}" aria-label="${ctaLabel} for ${w.title}">
+          <span>${ctaLabel}</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        ${tags.length ? `<div class="tags">
+          ${tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+        </div>` : ``}
       </div>
-      <div class="body">
-        <h3>${lock}<a href="#/work/${w.slug}">${w.title}</a></h3>
-        <p class="meta">${w.subtitle||""}</p>
-        <p class="meta">${(w.tags||[]).map(t=>`#${t}`).join(" ")}</p>
-        ${w.passwordProtected ? `<p><a href="mailto:farhadali.ux@gmail.com?subject=Request%20access%20to%20${encodeURIComponent(w.title)}">Request access</a></p>` : ""}
+
+      <div class="media" aria-hidden="true">
+        <img src="${w.heroImage}" alt="">
       </div>
     </article>
   `;
 }
+
 
 function renderWorkIndex(container){
   
