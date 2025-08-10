@@ -252,39 +252,32 @@ function cardMini(title, i){
 }
 
 function workCard(w){
-  const locked = !!w.passwordProtected;
+  const locked   = !!w.passwordProtected;
   const ctaLabel = locked ? "Enter Password" : "View Case Study";
-  const ctaHref  = `#/work/${w.slug}`;
-
-  // Fallbacks
-  const sub = w.subtitle || "";
-  const tags = (w.tags || []).slice(0,4);
+  const href     = `#/work/${w.slug}`;
+  const tags     = (w.tags || []).slice(0,6);
 
   return `
-    <article class="work-card" role="article">
-      <div class="copy">
+    <article class="work-hero" style="--img:url('${w.heroImage}')">
+      <div class="content">
         ${locked ? `<div class="eyebrow">🔒 Protected</div>` : ``}
-        <h3 class="title">
-          <a href="${ctaHref}" style="color:inherit; text-decoration:none;">
-            ${w.title}
-          </a>
-        </h3>
-        ${sub ? `<p class="sub">${sub}</p>` : ``}
-        <a class="cta" href="${ctaHref}" aria-label="${ctaLabel} for ${w.title}">
-          <span>${ctaLabel}</span>
-          <span class="arrow" aria-hidden="true">→</span>
+        <h3 class="title"><a href="${href}" style="color:inherit; text-decoration:none;">${w.title}</a></h3>
+        ${w.subtitle ? `<p class="sub">${w.subtitle}</p>` : ``}
+        <a class="cta" href="${href}" aria-label="${ctaLabel} for ${w.title}">
+          ${ctaLabel} <span aria-hidden="true">→</span>
         </a>
-        ${tags.length ? `<div class="tags">
-          ${tags.map(t=>`<span class="tag">${t}</span>`).join("")}
-        </div>` : ``}
       </div>
 
-      <div class="media" aria-hidden="true">
-        <img src="${w.heroImage}" alt="">
-      </div>
+      ${tags.length ? `<div class="tags">
+        ${tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+      </div>` : ``}
+
+      <a class="cover-link" href="${href}" aria-label="Open ${w.title}"></a>
     </article>
   `;
 }
+
+
 
 
 function renderWorkIndex(container){
