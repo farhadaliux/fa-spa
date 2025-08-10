@@ -178,7 +178,7 @@ async function enforceGate({container, slug, pinHash, hint}){
 
 
   // focus main for skip link
-  main.focus();
+  main.focus({ preventScroll: true });
 }
 
 function setActive(href){
