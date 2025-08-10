@@ -48,7 +48,7 @@ button{font:inherit}
 .container{max-width:var(--maxw); margin:0 auto; padding-inline:16px}
 
 /* Focus visible */
-:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+:focus-visible{outline:0px solid var(--focus); outline-offset:2px}
 
 /* Skip link */
 .skip-link{

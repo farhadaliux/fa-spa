@@ -35,6 +35,15 @@ function setupHeader(){
   const drawer = document.getElementById("mobileNav");
   const drawerClose = document.getElementById("drawerClose");
 
+  const drawerLinks = drawer.querySelectorAll('a[data-link]');
+drawerLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (drawer.open) drawer.close();
+    // return focus to the trigger for accessibility
+    btnOpen?.focus({ preventScroll: true });
+  });
+});
+
   menuBtn?.addEventListener("click", ()=>{
     drawer.showModal();
     menuBtn.setAttribute("aria-expanded","true");
@@ -62,6 +71,10 @@ function setupContact(){
 /* ---------- Router ---------- */
 function onRoute(){
   const path = (location.hash || "#/").slice(1);
+  // Ensure mobile drawer is closed after route changes (defensive)
+const mobileNav = document.getElementById('mobileNav');
+if (mobileNav?.open) mobileNav.close();
+
   const navLinks = document.querySelectorAll('.nav-list a');
   navLinks.forEach(a=> a.removeAttribute("aria-current"));
 
