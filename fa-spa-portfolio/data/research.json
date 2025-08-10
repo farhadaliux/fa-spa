@@ -1,0 +1,34 @@
+{
+  "research": [
+    {
+      "slug": "post-purchase-trust-model",
+      "title": "Post‑Purchase Trust Model",
+      "authors": "Farhad Ali",
+      "venue": "Self‑published whitepaper",
+      "year": 2024,
+      "tags": [
+        "trust",
+        "service recovery"
+      ],
+      "abstract": "A three‑layer model aligning interface, post‑purchase, and systemic trust.",
+      "pdf": "/files/placeholders/paper-1.pdf",
+      "slides": "/files/placeholders/slides-1.pdf",
+      "findings": [
+        "Returns clarity reduces anxiety",
+        "Fraud signaling increases completion intent"
+      ]
+    },
+    {
+      "slug": "accessibility-ecomm",
+      "title": "Accessibility in E‑commerce",
+      "authors": "Farhad Ali",
+      "venue": "Talk",
+      "year": 2023,
+      "tags": [
+        "accessibility",
+        "e‑commerce"
+      ],
+      "abstract": "Practical patterns for WCAG AA across PDP and checkout."
+    }
+  ]
+}

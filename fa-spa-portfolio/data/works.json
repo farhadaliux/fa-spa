@@ -1,0 +1,104 @@
+{
+  "works": [
+    {
+      "slug": "checkout-trust-bd",
+      "title": "Checkout Trust for Bangladesh",
+      "subtitle": "Reducing drop‑off with COD and clearer returns",
+      "role": "UX Researcher & Product Designer",
+      "timeline": "2024",
+      "context": "Capstone",
+      "scope": "Research, IA, Prototype",
+      "tags": [
+        "e‑commerce",
+        "trust",
+        "accessibility"
+      ],
+      "heroImage": "/img/placeholders/work-1.jpg",
+      "passwordProtected": false,
+      "problem": "Many users abandon checkout due to low trust and unclear policies.",
+      "goals": [
+        "Increase completion rate",
+        "Clarify returns & security"
+      ],
+      "methods": [
+        "Interviews",
+        "Heuristic eval",
+        "Usability tests"
+      ],
+      "process": {
+        "highlights": [
+          "Added COD + security cues",
+          "Inline return policy above CTA"
+        ],
+        "beforeAfter": [
+          {
+            "before": "/img/placeholders/before-1.png",
+            "after": "/img/placeholders/after-1.png",
+            "alt": "Before/after checkout"
+          }
+        ],
+        "decisions": [
+          "Moved policy near CTA to reduce anxiety"
+        ]
+      },
+      "results": {
+        "quant": "−24% drop‑off (prototype study)",
+        "qual": "Users reported higher confidence"
+      },
+      "challenges": "Balancing brevity and legal accuracy",
+      "credits": "Solo project; tools: Figma, Maze",
+      "related": [
+        "ia-taxonomy-refresh"
+      ]
+    },
+    {
+      "slug": "ia-taxonomy-refresh",
+      "title": "IA & Taxonomy Refresh",
+      "subtitle": "Faster findability via clearer labels",
+      "role": "UX Researcher",
+      "timeline": "2023",
+      "context": "Client",
+      "scope": "Research, IA",
+      "tags": [
+        "IA",
+        "taxonomy"
+      ],
+      "heroImage": "/img/placeholders/work-2.jpg",
+      "passwordProtected": false
+    },
+    {
+      "slug": "returns-support-ux",
+      "title": "Returns & Support UX",
+      "subtitle": "Step‑wise guides and refund tracker for reassurance",
+      "role": "Product Designer",
+      "timeline": "2024",
+      "context": "Concept",
+      "scope": "IA, Prototype",
+  "pinHash": "PUT_SHA256_HASH_HERE",
+  "hint": "Email to request the PIN.",
+      
+      "tags": [
+        "trust",
+        "service recovery"
+      ],
+      "heroImage": "/img/placeholders/work-3.jpg"
+    },
+    {
+      "slug": "returns-support-ux",
+      "title": "Returns & Support UX",
+      "subtitle": "Step‑wise guides and refund tracker for reassurance",
+      "role": "Product Designer",
+      "timeline": "2024",
+      "context": "Concept",
+      "scope": "IA, Prototype",
+  "pinHash": "PUT_SHA256_HASH_HERE",
+  "hint": "Email to request the PIN.",
+      
+      "tags": [
+        "trust",
+        "service recovery"
+      ],
+      "heroImage": "/img/placeholders/work-3.jpg"
+    }    
+  ]
+}
