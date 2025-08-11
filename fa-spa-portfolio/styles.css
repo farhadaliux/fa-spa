@@ -78,7 +78,7 @@ button {
 .container {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding-inline: 16px
+  padding-inline: 20px
 }
 
 /* Focus visible */
@@ -213,10 +213,10 @@ body {
 
 .drawer .drawer-header {
   display: flex;
-  height: 56px !important;
+  height: 120px !important;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  padding: 20px;
   border-bottom: none
 }
 
@@ -290,8 +290,8 @@ body {
 .drawer a,
 .drawer button {
   display: block;
-  padding: 12px 8px;
-  font-weight: 600;
+  padding: 0px;
+  font-weight: 700;
   color: var(--fg-primary);
   background: none;
   border: none;
@@ -397,7 +397,7 @@ main {
 
 @media (max-width:640px) {
   .header-inner {
-    height: 56px
+    height: 120px
   }
 
   .nav-list {
