@@ -12,50 +12,80 @@ let works = [];
 let research = [];
 
 async function bootstrap(){
-  // Load content models
-  works = (await fetch("data/works.json").then(r=>r.json())).works;
-  research = (await fetch("data/research.json").then(r=>r.json())).research;
+  startLoadingBar();
+  try {
+    works    = (await fetch("data/works.json").then(r=>r.json())).works;
+    research = (await fetch("data/research.json").then(r=>r.json())).research;
 
-  // Init router
-  window.addEventListener("hashchange", onRoute);
-  onRoute();
+    window.addEventListener("hashchange", onRoute);
+    onRoute();
 
-  // Header behaviors
-  setupHeader();
-  setupContact();
-
-  // Footer meta
-  document.getElementById("year").textContent = new Date().getFullYear();
-  document.getElementById("lastUpdated").textContent = new Date(document.lastModified).toLocaleDateString();
+    setupHeader();
+    setupContact();
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("lastUpdated").textContent = new Date(document.lastModified).toLocaleDateString();
+  } finally {
+    setTimeout(finishLoadingBar, 50);
+  }
 }
+
+
+
 document.addEventListener("DOMContentLoaded", bootstrap);
 
 function setupHeader(){
-  const menuBtn = document.getElementById("menuBtn");
-  const drawer = document.getElementById("mobileNav");
+  const menuBtn     = document.getElementById("menuBtn");
+  const drawer      = document.getElementById("mobileNav");
   const drawerClose = document.getElementById("drawerClose");
 
-  const drawerLinks = drawer.querySelectorAll('a[data-link]');
-drawerLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if (drawer.open) drawer.close();
-    // return focus to the trigger for accessibility
-    btnOpen?.focus({ preventScroll: true });
-  });
-});
+  // Hard page scroll lock (iOS/Android safe)
+  function lockScroll(){
+    const y = window.scrollY || window.pageYOffset || 0;
+    document.body.dataset.scrollY = y;
+    document.body.style.top = `-${y}px`;
+    document.body.classList.add('no-scroll-fixed');
+  }
+  function unlockScroll(){
+    const y = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.classList.remove('no-scroll-fixed');
+    document.body.style.top = '';
+    window.scrollTo(0, y);
+    delete document.body.dataset.scrollY;
+  }
 
-  menuBtn?.addEventListener("click", ()=>{
-    drawer.showModal();
-    menuBtn.setAttribute("aria-expanded","true");
-  });
-  drawerClose?.addEventListener("click", ()=>{
-    drawer.close();
-    menuBtn.setAttribute("aria-expanded","false");
-    menuBtn.focus();
-  });
+  const openDrawer = () => {
+    if (!drawer.open) {
+      drawer.showModal();                            // <dialog> API
+      menuBtn?.setAttribute("aria-expanded","true");
+      lockScroll();
+    }
+  };
+  const closeDrawer = () => {
+    if (drawer.open) drawer.close();                 // triggers "close"
+  };
+
+  menuBtn?.addEventListener("click", openDrawer);
+  drawerClose?.addEventListener("click", closeDrawer);
+
+  // Close when a link/button inside the drawer is clicked
   drawer.addEventListener("click", (e)=>{
-    if (e.target === drawer) { drawer.close(); menuBtn.setAttribute("aria-expanded","false"); menuBtn.focus(); }
+    const el = e.target.closest("[data-nav-close]");
+    if (el) closeDrawer();
   });
+
+  // DO NOT close on backdrop click (prevents bottom-gap tap from closing)
+  // (remove any previous handler that closed when e.target === drawer)
+
+  drawer.addEventListener("close", ()=>{
+    menuBtn?.setAttribute("aria-expanded","false");
+    unlockScroll();
+  });
+
+  // Also close on route change and on resize to desktop
+  window.addEventListener("hashchange", closeDrawer);
+  const mq = window.matchMedia("(min-width: 1025px)");
+  const onMQ = e => { if (e.matches) closeDrawer(); };
+  mq.addEventListener ? mq.addEventListener("change", onMQ) : mq.addListener(onMQ);
 }
 
 function setupContact(){
@@ -68,9 +98,110 @@ function setupContact(){
   modal?.addEventListener("click", (e)=>{ if (e.target === modal) modal.close(); });
 }
 
+// ---- Breadcrumbs (top-level, no conflicts) ----
+function escapeHtml(s=''){
+  return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function renderBreadcrumbsFor(path){
+  const el = document.getElementById('breadcrumbs');
+  if (!el) return;
+
+  const parts = (path || '').split('/').filter(Boolean);
+  let items = null;
+
+  if (parts[0] === 'work' && parts.length === 1) {
+    items = [{label:'Home', href:'#/'}, {label:'Work'}];
+  } else if (parts[0] === 'work' && parts[1]) {
+    const w = (window.works || []).find(x => x.slug === parts[1]);
+    items = [{label:'Home', href:'#/'}, {label:'Work', href:'#/work'}, {label: w?.title || parts[1]}];
+  } else if (parts[0] === 'research' && parts.length === 1) {
+    items = [{label:'Home', href:'#/'}, {label:'Research'}];
+  } else if (parts[0] === 'research' && parts[1]) {
+    const r = (window.research || []).find(x => x.slug === parts[1]);
+    items = [{label:'Home', href:'#/'}, {label:'Research', href:'#/research'}, {label: r?.title || parts[1]}];
+  } else if (parts[0] === 'about') {
+    items = [{label:'Home', href:'#/'}, {label:'About'}];
+  }
+
+  if (!items) {
+    el.style.display = 'none';
+    el.innerHTML = '';
+    return;
+  }
+
+  el.style.display = '';
+  el.innerHTML = items.map((it, i) => {
+    const last = i === items.length - 1;
+    return last
+      ? `<span aria-current="page">${escapeHtml(it.label)}</span>`
+      : `<a href="${it.href}">${escapeHtml(it.label)}</a><span class="sep">/</span>`;
+  }).join(' ');
+}
+
+
+// --- Top loading bar (adaptive YouTube-style) ---
+let __loaderTimer = null;
+let __loaderProgress = 0;
+let __loaderStart = 0;
+
+const MIN_VISIBLE_MS = 650;  // keep bar visible at least ~0.65s
+const STEP_MS = 80;          // how often we bump progress
+const MAX_BEFORE_FINISH = 90; // creep up to 90% while “loading”
+
+function __setBar(pct){
+  const bar = document.getElementById('loading-bar');
+  if (!bar) return;
+  bar.style.opacity = '1';
+  bar.style.width = pct + '%';
+}
+
+function startLoadingBar(){
+  clearInterval(__loaderTimer);
+  __loaderStart = performance.now();
+  __loaderProgress = 0;
+  __setBar(0);
+
+  // Smooth-ish ramp toward 90% with easing
+  __loaderTimer = setInterval(()=>{
+    // ease: smaller increments as we get closer to 90
+    const remaining = MAX_BEFORE_FINISH - __loaderProgress;        // e.g., 90 - 35 = 55
+    const step = Math.max(1, Math.ceil(remaining * 0.12));          // 12% of remaining, min 1
+    __loaderProgress = Math.min(MAX_BEFORE_FINISH, __loaderProgress + step);
+    __setBar(__loaderProgress);
+    if (__loaderProgress >= MAX_BEFORE_FINISH) {
+      clearInterval(__loaderTimer);
+    }
+  }, STEP_MS);
+
+  // quick kick so users notice
+  requestAnimationFrame(()=>__setBar(12));
+}
+
+function finishLoadingBar(){
+  const elapsed = performance.now() - __loaderStart;
+  const wait = Math.max(0, MIN_VISIBLE_MS - elapsed); // enforce minimum visible duration
+
+  clearInterval(__loaderTimer);
+
+  setTimeout(()=>{
+    // finish to 100, then fade out and reset
+    __setBar(100);
+    setTimeout(()=>{
+      const bar = document.getElementById('loading-bar');
+      if (!bar) return;
+      bar.style.opacity = '0';
+      setTimeout(()=>{ bar.style.width = '0%'; }, 180);
+    }, 180);
+  }, wait);
+}
+
 /* ---------- Router ---------- */
 function onRoute(){
+    startLoadingBar();
   const path = (location.hash || "#/").slice(1);
+    // Show/hide + fill breadcrumbs for allowed pages
+  renderBreadcrumbsFor(path);
   // Ensure mobile drawer is closed after route changes (defensive)
 const mobileNav = document.getElementById('mobileNav');
 if (mobileNav?.open) mobileNav.close();
@@ -179,12 +310,22 @@ async function enforceGate({container, slug, pinHash, hint}){
 
   // focus main for skip link
   main.focus({ preventScroll: true });
+
+  setTimeout(finishLoadingBar, 0);
+
 }
 
-function setActive(href){
-  const link = document.querySelector(`.nav-list a[href="${href}"]`);
-  if (link) link.setAttribute("aria-current","page");
+function setActive(){
+  const currentPath = window.location.hash || '#/';
+  document.querySelectorAll('.nav-list a, .drawer-links a').forEach(link => {
+    if(link.getAttribute('href') === currentPath){
+      link.setAttribute('aria-current','page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
 }
+
 
 /* ---------- Renderers ---------- */
 function renderHome(container){
