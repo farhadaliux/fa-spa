@@ -259,7 +259,7 @@ function renderMaintenanceScreen(config = {}) {
   main.innerHTML = `
     <section class="maintenance-screen">
       <div class="maintenance-card">
-          <h1>Updating case studies!</h1>
+          <h1>New case studies incoming!</h1>
         <p class="sub">${escapeHtml(msg)}</p>
         ${when ? `<p class="mono">Expected back online: ${when.toLocaleString()}</p>` : ``}
         <div class="maintenance-actions">
