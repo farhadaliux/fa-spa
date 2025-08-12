@@ -1217,3 +1217,11 @@ body.maintenance .site-footer {
 .maintenance-card p.sub { color: var(--fg-secondary); margin: 0 0 12px 0; }
 .maintenance-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+
+/* Prevent header/footer flash before maintenance check resolves */
+.pre-maint .app-header,
+.pre-maint .drawer,
+.pre-maint .site-footer {
+  visibility: hidden; /* keeps layout stable, no jump */
+}

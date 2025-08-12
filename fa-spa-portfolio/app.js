@@ -274,12 +274,15 @@ async function enforceMaintenance(){
   const active = !!cfg.enabled && !maintBypass();
   if (active) {
     renderMaintenanceScreen(cfg);
+    document.documentElement.classList.remove('pre-maint');   // ⟵ NEW: stop the temporary hide
     return true; // blocked
   } else {
     document.body.classList.remove('maintenance');
+    document.documentElement.classList.remove('pre-maint');   // ⟵ NEW: show chrome instantly
     return false; // continue normal site
   }
 }
+
 
 /* ---------- Router ---------- */
 /* ---------- Router ---------- */
