@@ -105,9 +105,24 @@ body {
 }
 
 /* Round SVG logo sizing */
-.logo { display: inline-flex; align-items: center; gap: 10px; }
-.logo-mark { width: 24px; height: 24px; display: block;}
-@media (min-width:1025px){ .logo-mark { width: 32px; height: 32px; } }
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+@media (min-width:1025px) {
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+}
 
 
 /* Skip link */
@@ -206,26 +221,39 @@ body {
 
 /* Remove blue flash on click (pressed/active highlight) */
 .icon-btn {
-  background: transparent;                 /* default */
-  -webkit-tap-highlight-color: transparent;/* mobile tap flash */
-  appearance: none;                        /* normalize */
+  background: transparent;
+  /* default */
+  -webkit-tap-highlight-color: transparent;
+  /* mobile tap flash */
+  appearance: none;
+  /* normalize */
 }
 
 /* keep hover clean */
-.icon-btn:hover { background: transparent; }
+.icon-btn:hover {
+  background: transparent;
+}
 
 /* kill the pressed fill */
-.icon-btn:active { background: transparent; }
+.icon-btn:active {
+  background: transparent;
+}
 
 /* accessible focus (keyboard only) */
-.icon-btn:focus { outline: none; }         /* remove UA focus */
+.icon-btn:focus {
+  outline: none;
+}
+
+/* remove UA focus */
 .icon-btn:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
 
 /* (Firefox) remove inner focus ring/padding */
-.icon-btn::-moz-focus-inner { border: 0; }
+.icon-btn::-moz-focus-inner {
+  border: 0;
+}
 
 /* Drawer */
 .drawer {
@@ -1146,9 +1174,10 @@ main {
   outline-offset: 3px;
 }
 
-#loading-bar{
+#loading-bar {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   height: 3px;
   width: 0%;
   background: #0F6CBD;
@@ -1156,21 +1185,42 @@ main {
   opacity: 0;
   transition: width .3s ease, opacity .15s linear;
 }
-@media (prefers-reduced-motion: reduce){
-  #loading-bar{ transition: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  #loading-bar {
+    transition: none;
+  }
 }
 
 
-.breadcrumbs { font-size: 14px; margin: 16px 0; }
-.breadcrumbs a { color: var(--brand-primary); text-decoration: none; }
-.breadcrumbs a:hover { text-decoration: none; }
-.breadcrumbs .sep { margin: 0 6px; color: var(--fg-secondary); }
+.breadcrumbs {
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.breadcrumbs a {
+  color: var(--brand-primary);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: none;
+}
+
+.breadcrumbs .sep {
+  margin: 0 6px;
+  color: var(--fg-secondary);
+}
 
 
-.breadcrumbs [aria-current="page"]{
+.breadcrumbs [aria-current="page"] {
   text-transform: capitalize;
-  max-width: 60ch; display:inline-block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  vertical-align:bottom;
+  max-width: 60ch;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
 }
 
 
@@ -1196,21 +1246,42 @@ body.maintenance .site-footer {
   border-radius: var(--radius-l);
 }
 
-.maintenance-card h1 { margin: 0 0 20px 0; font-size: 50px; }
-.maintenance-card p.sub { color: var(--fg-secondary); margin: 0 0 20px 0;  font-size: 20px;}
-.maintenance-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
-.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.maintenance-card h1 {
+  margin: 0 0 20px 0;
+  font-size: 50px;
+}
+
+.maintenance-card p.sub {
+  color: var(--fg-secondary);
+  margin: 0 0 20px 0;
+  font-size: 20px;
+}
+
+.maintenance-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
 
 
 /* Prevent header/footer flash before maintenance check resolves */
 .pre-maint .app-header,
 .pre-maint .drawer,
 .pre-maint .site-footer {
-  visibility: hidden; /* keeps layout stable, no jump */
+  visibility: hidden;
+  /* keeps layout stable, no jump */
 }
 
 /* Dynamic background for Under-Construction */
-:root { --maint-bg: none; }
+:root {
+  --maint-bg: none;
+}
 
 body.maintenance .maintenance-screen {
   position: relative;
@@ -1221,9 +1292,10 @@ body.maintenance .maintenance-screen {
 
 /* Glassy card */
 .maintenance-card {
-  background: rgba(255,255,255,.85);
+  background: rgba(255, 255, 255, .85);
   backdrop-filter: blur(4px);
 }
+
 @media (prefers-color-scheme: dark) {
   .maintenance-card {
     color: #fff;
@@ -1233,22 +1305,26 @@ body.maintenance .maintenance-screen {
 
 /* === No scrolling while Under-Construction is ON === */
 body.maintenance {
-  overflow: hidden;                /* stop page scroll */
+  overflow: hidden;
+  /* stop page scroll */
 }
 
 body.maintenance main {
-  padding: 0;                      /* remove main's default 32/48px padding */
+  padding: 0;
+  /* remove main's default 32/48px padding */
 }
 
 body.maintenance .maintenance-screen {
-  min-height: 100dvh;              /* exactly one viewport tall */
-  padding: 0;                      /* no extra vertical space */
+  min-height: 100dvh;
+  /* exactly one viewport tall */
+  padding: 0;
+  /* no extra vertical space */
   display: grid;
-  place-items: center;             /* keep the card centered */
+  place-items: center;
+  /* keep the card centered */
 }
 
 /* (optional) keep the card off the edges on small screens */
 body.maintenance .maintenance-card {
   margin: 0 16px;
 }
-

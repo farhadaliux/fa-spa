@@ -8,13 +8,13 @@
   <title>Farhad Ali — UX Designer</title>
   <meta name="description" content="Research-led, accessible, minimal portfolio by Farhad Ali." />
   <script>
-  // remove any dev classes/flags if a previous build added them
-  document.documentElement.classList.remove('dev-mode');
-  document.body?.classList?.remove('dev-mode');
-  ['dev','devMode','debug','__DEV__','maintBypass'].forEach(k=>{
-    try{ localStorage.removeItem(k); sessionStorage.removeItem(k);}catch(e){}
-  });
-</script>
+    // remove any dev classes/flags if a previous build added them
+    document.documentElement.classList.remove('dev-mode');
+    document.body?.classList?.remove('dev-mode');
+    ['dev', 'devMode', 'debug', '__DEV__', 'maintBypass'].forEach(k => {
+      try { localStorage.removeItem(k); sessionStorage.removeItem(k); } catch (e) { }
+    });
+  </script>
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="img/placeholders/favicon.svg" type="image/svg+xml" />
@@ -24,14 +24,14 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="app-header" role="banner">
-  <!-- top loading progress bar -->
-  <div id="loading-bar" aria-hidden="true"></div>
+    <!-- top loading progress bar -->
+    <div id="loading-bar" aria-hidden="true"></div>
 
     <div class="container header-inner">
       <a href="#/" class="logo" aria-label="Farhad Ali — Home">
-  <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
-  <span class="logo-text">Farhad&nbsp;Ali</span>
-</a>
+        <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
+        <span class="logo-text">Farhad&nbsp;Ali</span>
+      </a>
       <nav class="primary-nav" aria-label="Primary">
         <button id="menuBtn" class="icon-btn" aria-haspopup="dialog" aria-controls="mobileNav" aria-expanded="false">
           <span class="sr-only">Open menu</span>
@@ -55,9 +55,9 @@
   <dialog id="mobileNav" class="drawer" aria-label="Navigation">
     <div class="drawer-header">
       <a href="#/" class="logo" aria-label="Farhad Ali — Home">
-  <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
-  <span class="logo-text">Farhad&nbsp;Ali</span>
-</a>
+        <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
+        <span class="logo-text">Farhad&nbsp;Ali</span>
+      </a>
 
       <button class="icon-btn" id="drawerClose" aria-label="Close menu">
         <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
@@ -78,9 +78,9 @@
     </nav>
   </dialog>
 
-<div class="container">
-  <nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb"></nav>
-</div>
+  <div class="container">
+    <nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb"></nav>
+  </div>
   <main id="main" class="container" tabindex="-1"></main>
 
   <footer class="site-footer" role="contentinfo">

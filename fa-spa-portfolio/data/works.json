@@ -74,9 +74,8 @@
       "timeline": "2024",
       "context": "Concept",
       "scope": "IA, Prototype",
-  "pinHash": "PUT_SHA256_HASH_HERE",
-  "hint": "Email to request the PIN.",
-      
+      "pinHash": "PUT_SHA256_HASH_HERE",
+      "hint": "Email to request the PIN.",
       "tags": [
         "trust",
         "service recovery"
@@ -91,14 +90,13 @@
       "timeline": "2024",
       "context": "Concept",
       "scope": "IA, Prototype",
-  "pinHash": "PUT_SHA256_HASH_HERE",
-  "hint": "Email to request the PIN.",
-      
+      "pinHash": "PUT_SHA256_HASH_HERE",
+      "hint": "Email to request the PIN.",
       "tags": [
         "trust",
         "service recovery"
       ],
       "heroImage": "/img/placeholders/work-3.jpg"
-    }    
+    }
   ]
 }
