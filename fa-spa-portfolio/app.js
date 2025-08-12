@@ -259,12 +259,12 @@ function renderMaintenanceScreen(config = {}){
   main.innerHTML = `
     <section class="maintenance-screen">
       <div class="maintenance-card">
-          <h1>Great things coming soon!</h1>
+          <h1>Updating case studies!</h1>
         <p class="sub">${escapeHtml(msg)}</p>
-        ${when ? `<p class="mono">Back by: ${when.toLocaleString()}</p>` : ``}
+        ${when ? `<p class="mono">Expected back online: ${when.toLocaleString()}</p>` : ``}
         <div class="maintenance-actions">
-        ${config.contact?.whatsapp ? `<a class="btn ghost" href="${config.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ``}
-          ${config.contact?.email ? `<a class="btn ghost" href="mailto:${config.contact.email}">Email</a>` : ``}
+        ${config.contact?.whatsapp ? `<a class="btn ghost" href="${config.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp me</a>` : ``}
+          ${config.contact?.email ? `<a class="btn ghost" href="mailto:${config.contact.email}">Email me</a>` : ``}
           
         </div>
 
