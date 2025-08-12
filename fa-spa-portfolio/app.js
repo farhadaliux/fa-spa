@@ -12,38 +12,20 @@ let works = [];
 let research = [];
 
 async function bootstrap(){
+  
   startLoadingBar();
   try {
     works    = (await fetch("data/works.json").then(r=>r.json())).works;
     research = (await fetch("data/research.json").then(r=>r.json())).research;
-
+  // Init router
     window.addEventListener("hashchange", onRoute);
     onRoute();
 
+  // Header behaviors
     setupHeader();
     setupContact();
-    // ---- Dev Mode init (global ON by default) ----
-// URL overrides win first
-const urlDevOn  = /[?#&]dev=1\b/.test(location.href);
-const urlDevOff = /[?#&]dev=0\b/.test(location.href);
 
-if (urlDevOn) {
-  devSet(true);
-} else if (urlDevOff) {
-  devSet(false);
-} else if (DEV_DEFAULT || DEV_AUTO) {
-  // force ON site-wide by default
-  devSet(true);
-} else if (devIsOn()) {
-  // respect saved choice
-  document.body.classList.add('dev-mode');
-}
-devUpdateBadge();
-
-    // reflect saved dev mode on first load
-if (devIsOn()) document.body.classList.add('dev-mode');
-devUpdateBadge();
-
+      // Footer meta
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("lastUpdated").textContent = new Date(document.lastModified).toLocaleDateString();
   } finally {
@@ -157,39 +139,38 @@ function renderBreadcrumbsFor(path){
     const last = i === items.length - 1;
     return last
       ? `<span aria-current="page">${escapeHtml(it.label)}</span>`
-      : `<a href="${it.href}">${escapeHtml(it.label)}</a><span class="sep">/</span>`;
+      : `<a href="${it.href}">${escapeHtml(it.label)}</a><span class="sep">></span>`;
   }).join(' ');
 }
+
+// --- Compatibility: keep old Breadcrumbs.render(...) calls working ---
+if (!window.Breadcrumbs) {
+  window.Breadcrumbs = {
+    render(items){
+      const el = document.getElementById('breadcrumbs');
+      if (!el) return;
+      if (!items || !items.length){
+        el.style.display = 'none';
+        el.innerHTML = '';
+        return;
+      }
+      el.style.display = '';
+      el.innerHTML = items.map((it,i)=>{
+        const last = i === items.length-1;
+        return last
+          ? `<span aria-current="page">${escapeHtml(it.label)}</span>`
+          : `<a href="${it.href}">${escapeHtml(it.label)}</a><span class="sep">></span>`;
+      }).join(' ');
+    }
+  };
+}
+
 
 
 // --- Top loading bar (adaptive YouTube-style) ---
 let __loaderTimer = null;
 let __loaderProgress = 0;
 let __loaderStart = 0;
-
-// ---- Dev Mode helpers (no conflicts) ----
-function devIsOn(){ return localStorage.getItem('devMode') === '1'; }
-
-function devSet(on){
-  if (on){ localStorage.setItem('devMode','1'); document.body.classList.add('dev-mode'); }
-  else   { localStorage.removeItem('devMode');   document.body.classList.remove('dev-mode'); }
-  devUpdateBadge();
-}
-
-function devUpdateBadge(){
-  const b = document.getElementById('devBadge');
-  if (!b) return;
-  b.hidden = !devIsOn();
-}
-
-// Keyboard shortcut: Alt + D toggles dev mode
-window.addEventListener('keydown', (e)=>{
-  if (e.altKey && (e.key === 'd' || e.key === 'D')){
-    devSet(!devIsOn());
-  }
-});
-
-
 const MIN_VISIBLE_MS = 650;  // keep bar visible at least ~0.65s
 const STEP_MS = 80;          // how often we bump progress
 const MAX_BEFORE_FINISH = 90; // creep up to 90% while “loading”
@@ -240,133 +221,120 @@ function finishLoadingBar(){
     }, 180);
   }, wait);
 }
-// Turn this ON to ship dev mode by default (set back to false later)
-const DEV_DEFAULT = true;
+/* ===== Maintenance Mode (global switch via data/maintenance.json) ===== */
 
-// Optional: also auto-enable on localhost / pages.dev
-const DEV_AUTO = /(?:localhost|\.pages\.dev)$/i.test(location.hostname);
+// Admin bypass (so you can view the site during maintenance)
+// Visit with ?bypass=1 to enable in your browser, ?bypass=0 to clear
+(function setupBypassFromURL(){
+  const u = String(location.href);
+  if (/[?&#]bypass=1\b/i.test(u)) localStorage.setItem('maintBypass','1');
+  if (/[?&#]bypass=0\b/i.test(u)) localStorage.removeItem('maintBypass');
+})();
+function maintBypass(){ return localStorage.getItem('maintBypass') === '1'; }
 
-/* ---------- Router ---------- */
-function onRoute(){
-    startLoadingBar();
-  const path = (location.hash || "#/").slice(1);
-    // Show/hide + fill breadcrumbs for allowed pages
-  renderBreadcrumbsFor(path);
-  // Ensure mobile drawer is closed after route changes (defensive)
-const mobileNav = document.getElementById('mobileNav');
-if (mobileNav?.open) mobileNav.close();
-
-  const navLinks = document.querySelectorAll('.nav-list a');
-  navLinks.forEach(a=> a.removeAttribute("aria-current"));
-
-  // match /work/:slug or /research/:slug
-  const parts = path.split("/").filter(Boolean);
-  const main = document.getElementById("main");
-
-  if (parts.length === 0){
-    renderHome(main);
-    setActive("#/");
-  } else if (parts[0] === "work" && parts[1]){
-    renderWorkDetail(main, parts[1]);
-    setActive("#/work");
-  } else if (parts[0] === "work"){
-    renderWorkIndex(main);
-    setActive("#/work");
-  } else if (parts[0] === "research" && parts[1]){
-    renderResearchDetail(main, parts[1]);
-    setActive("#/research");
-  } else if (parts[0] === "research"){
-    renderResearchIndex(main);
-    setActive("#/research");
-  } else if (parts[0] === "about"){
-    renderAbout(main);
-    setActive("#/about");
-  } else if (parts[0] === "dev"){
-    renderDevPage(main);  }
-  else {
-    renderNotFound(main);
+// Fetch maintenance config (cache-busted to avoid CDN caching)
+async function getMaintenanceConfig(){
+  try {
+    const res = await fetch(`data/maintenance.json?ts=${Date.now()}`, { cache: 'no-store' });
+    return await res.json();
+  } catch (e) {
+    // If the file is missing or JSON fails, assume not in maintenance
+    return { enabled: false };
   }
-  
-
-  // --- Breadcrumbs helper (drop-in) ---
-window.Breadcrumbs = {
-  el: null,
-  mount(){
-    this.el = document.getElementById('breadcrumbs');
-  },
-  render(items){
-    if (!this.el) this.mount();
-    if (!this.el) return;
-
-    if (!items || !items.length){ this.el.innerHTML = ''; return; }
-
-    this.el.innerHTML = items.map((it,i)=>{
-      const last = i === items.length-1;
-      if (last) return `<span aria-current="page">${escapeHtml(it.label)}</span>`;
-      return `<a href="${it.href}">${escapeHtml(it.label)}</a><span class="sep">/</span>`;
-    }).join(' ');
-  }
-};
-function escapeHtml(s=''){return s.replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[m]));}
-
-
-// --- Password Gate (client-side) ---
-// Change this salt in production:
-const PASSWORD_SALT = 'change-me';
-
-async function sha256(text){
-  const data = new TextEncoder().encode(text);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  return [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('');
 }
-async function hashPin(pin){ return sha256(`${pin}|${PASSWORD_SALT}`); }
 
-// Remember unlock for the current tab
-function isUnlocked(slug){ return sessionStorage.getItem('work:'+slug) === '1'; }
-function setUnlocked(slug){ sessionStorage.setItem('work:'+slug, '1'); }
+// Render the Under-Construction screen into <main>
+function renderMaintenanceScreen(config = {}){
+  document.body.classList.add('maintenance');
+  const main = document.getElementById('main');
+  const msg  = config.message || "We're making improvements.";
+  const when = config.availableAt ? new Date(config.availableAt) : null;
 
-// Use on the case detail page container
-async function enforceGate({container, slug, pinHash, hint}){
-  if (isUnlocked(slug)) return; // already unlocked this session
-
-  // Render a simple inline gate
-  container.innerHTML = `
-    <section class="section">
-      <h1 class="title">🔒 This case is protected</h1>
-      <p class="sub">Enter the access PIN to continue.</p>
-      <form id="gateForm" class="gate">
-        <label for="pin">Access PIN</label>
-        <input id="pin" name="pin" type="password" autocomplete="off" required />
-        <button class="btn" type="submit">Unlock</button>
-        ${hint ? `<p class="meta">Hint: ${escapeHtml(hint)}</p>` : ''}
-        <p class="meta">Or <a href="mailto:farhadali.ux@gmail.com?subject=Request%20access">request access by email</a>.</p>
-      </form>
+  main.innerHTML = `
+    <section class="maintenance-screen">
+      <div class="maintenance-card">
+        <h1>Under Construction</h1>
+        <p class="sub">${escapeHtml(msg)}</p>
+        ${when ? `<p class="mono">Back by: ${when.toLocaleString()}</p>` : ``}
+        <div class="maintenance-actions">
+          ${config.contact?.email ? `<a class="btn ghost" href="mailto:${config.contact.email}">Email</a>` : ``}
+          ${config.contact?.whatsapp ? `<a class="btn ghost" href="${config.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ``}
+        </div>
+        <p class="muted" style="margin-top:10px">
+          If you're the site owner, add <span class="mono">?bypass=1</span> to the URL to preview the site.
+        </p>
+      </div>
     </section>
   `;
+}
 
-  const form = container.querySelector('#gateForm');
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const pin = container.querySelector('#pin').value.trim();
-    const ok = (await hashPin(pin)) === pinHash;
-    if (ok){
-      setUnlocked(slug);
-      // Re-render your normal case content here:
-      if (typeof renderUnlockedCase === 'function') renderUnlockedCase(container, slug);
-      else location.reload();
+// Quick check used in bootstrap + navigation
+async function enforceMaintenance(){
+  const cfg = await getMaintenanceConfig();
+  const active = !!cfg.enabled && !maintBypass();
+  if (active) {
+    renderMaintenanceScreen(cfg);
+    return true; // blocked
+  } else {
+    document.body.classList.remove('maintenance');
+    return false; // continue normal site
+  }
+}
+
+/* ---------- Router ---------- */
+/* ---------- Router ---------- */
+function onRoute(){
+  startLoadingBar();
+
+  const path = (location.hash || "#/").slice(1);
+
+  // Maintenance: block routing if ON (and not bypassed)
+  enforceMaintenance().then(active => {
+    if (active) { finishLoadingBar(); return; }
+
+    // Show/hide + fill breadcrumbs for allowed pages
+    renderBreadcrumbsFor(path);
+
+    // Ensure mobile drawer is closed after route changes (defensive)
+    const mobileNav = document.getElementById('mobileNav');
+    if (mobileNav?.open) mobileNav.close();
+
+    // clear active state
+    document.querySelectorAll('.nav-list a').forEach(a=> a.removeAttribute("aria-current"));
+
+    // match /work/:slug or /research/:slug
+    const parts = path.split("/").filter(Boolean);
+    const main = document.getElementById("main");
+
+    if (parts.length === 0){
+      renderHome(main);
+      setActive("#/");
+    } else if (parts[0] === "work" && parts[1]){
+      renderWorkDetail(main, parts[1]);
+      setActive("#/work");
+    } else if (parts[0] === "work"){
+      renderWorkIndex(main);
+      setActive("#/work");
+    } else if (parts[0] === "research" && parts[1]){
+      renderResearchDetail(main, parts[1]);
+      setActive("#/research");
+    } else if (parts[0] === "research"){
+      renderResearchIndex(main);
+      setActive("#/research");
+    } else if (parts[0] === "about"){
+      renderAbout(main);
+      setActive("#/about");
     } else {
-      alert('Incorrect PIN');
+      renderNotFound(main);
     }
+
+    // focus main for skip link
+    main.focus({ preventScroll: true });
+
+    setTimeout(finishLoadingBar, 0);
   });
 }
 
-
-  // focus main for skip link
-  main.focus({ preventScroll: true });
-
-  setTimeout(finishLoadingBar, 0);
-
-}
 
 function setActive(){
   const currentPath = window.location.hash || '#/';
@@ -504,14 +472,6 @@ function renderWorkIndex(container){
 function renderWorkDetail(container, slug){
   const w = works.find(x=> x.slug === slug);
   if (!w){ renderNotFound(container); return; }
-
-  Breadcrumbs.render([
-  {label:'Home', href:'#/'},
-  {label:'Work', href:'#/work'},
-  {label:w.title}
-]);
-
-
   container.innerHTML = `
     <article class="detail">
       <header>
@@ -578,12 +538,6 @@ function renderResearchDetail(container, slug){
   const r = research.find(x=> x.slug===slug);
   if (!r){ renderNotFound(container); return; }
 
-  Breadcrumbs.render([
-  {label:'Home', href:'#/'},
-  {label:'Research', href:'#/research'},
-  {label:r.title}
-]);
-
 
   container.innerHTML = `
     <article class="detail">
@@ -623,27 +577,6 @@ function renderAbout(container){
     </section>
   `;
 }
-
-function renderDevPage(container){
-  // simple page with enable/disable buttons
-  container.innerHTML = `
-    <section class="section">
-      <h1 class="title">Developer Mode</h1>
-      <p class="sub">Enable local development tools for this browser only.</p>
-
-      <div style="display:flex; gap:8px; margin-top:12px">
-        <button class="btn" id="devEnable" type="button">Enable</button>
-        <button class="btn ghost" id="devDisable" type="button">Disable</button>
-      </div>
-
-      <p class="muted" style="margin-top:10px">Shortcut: <kbd>Alt</kbd> + <kbd>D</kbd> to toggle.</p>
-    </section>
-  `;
-
-  container.querySelector('#devEnable').addEventListener('click', ()=> devSet(true));
-  container.querySelector('#devDisable').addEventListener('click', ()=> devSet(false));
-}
-
 
 function renderNotFound(container){
   container.innerHTML = `<section class="section"><h1>Not found</h1><p>That page doesn’t exist. Try <a href="#/">Home</a>.</p></section>`;
