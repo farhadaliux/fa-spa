@@ -104,6 +104,11 @@ body {
   }
 }
 
+/* Round SVG logo sizing */
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo-mark { width: 24px; height: 24px; display: block;}
+@media (min-width:1025px){ .logo-mark { width: 32px; height: 32px; } }
+
 
 /* Skip link */
 .skip-link {
@@ -312,7 +317,7 @@ body {
 
 .drawer a,
 .drawer button {
-  display: block;
+  display: inline-flex;
   font-weight: 700;
   color: var(--fg-primary);
   background: none;
