@@ -2,6 +2,7 @@
   "enabled": true,
   "message": "I'm improving the site right now.",
   "availableAt": "2025-08-20T18:00:00+06:00",
+  "bgImage": "img/placeholders/maintenance-bg.jpg",
   "contact": {
     "whatsapp": "https://wa.me/8801717959838",
     "email": "farhadali.ux@gmail.com"

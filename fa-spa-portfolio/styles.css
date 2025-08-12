@@ -1209,13 +1209,11 @@ body.maintenance .site-footer {
   max-width: 720px;
   background: var(--surface);
   border-radius: var(--radius-l);
-  box-shadow: var(--shadow-card);
-  padding: 24px;
 }
 
-.maintenance-card h1 { margin: 0 0 8px 0; font-size: 28px; }
-.maintenance-card p.sub { color: var(--fg-secondary); margin: 0 0 12px 0; }
-.maintenance-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+.maintenance-card h1 { margin: 0 0 20px 0; font-size: 50px; }
+.maintenance-card p.sub { color: var(--fg-secondary); margin: 0 0 20px 0;  font-size: 20px;}
+.maintenance-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 24px; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
 
@@ -1225,3 +1223,48 @@ body.maintenance .site-footer {
 .pre-maint .site-footer {
   visibility: hidden; /* keeps layout stable, no jump */
 }
+
+/* Dynamic background for Under-Construction */
+:root { --maint-bg: none; }
+
+body.maintenance .maintenance-screen {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+}
+
+
+
+/* Glassy card */
+.maintenance-card {
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(4px);
+}
+@media (prefers-color-scheme: dark) {
+  .maintenance-card {
+    color: #fff;
+
+  }
+}
+
+/* === No scrolling while Under-Construction is ON === */
+body.maintenance {
+  overflow: hidden;                /* stop page scroll */
+}
+
+body.maintenance main {
+  padding: 0;                      /* remove main's default 32/48px padding */
+}
+
+body.maintenance .maintenance-screen {
+  min-height: 100dvh;              /* exactly one viewport tall */
+  padding: 0;                      /* no extra vertical space */
+  display: grid;
+  place-items: center;             /* keep the card centered */
+}
+
+/* (optional) keep the card off the edges on small screens */
+body.maintenance .maintenance-card {
+  margin: 0 16px;
+}
+

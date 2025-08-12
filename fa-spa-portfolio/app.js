@@ -243,8 +243,14 @@ async function getMaintenanceConfig(){
   }
 }
 
-// Render the Under-Construction screen into <main>
 function renderMaintenanceScreen(config = {}){
+  // NEW: set CSS var for the background image (if provided)
+  if (config.bgImage) {
+    document.documentElement.style.setProperty('--maint-bg', `url('${config.bgImage}')`);
+  } else {
+    document.documentElement.style.setProperty('--maint-bg', 'none');
+  }
+
   document.body.classList.add('maintenance');
   const main = document.getElementById('main');
   const msg  = config.message || "We're making improvements.";
@@ -253,20 +259,22 @@ function renderMaintenanceScreen(config = {}){
   main.innerHTML = `
     <section class="maintenance-screen">
       <div class="maintenance-card">
-        <h1>Under Construction</h1>
+          <h1>Great things coming soon!</h1>
         <p class="sub">${escapeHtml(msg)}</p>
         ${when ? `<p class="mono">Back by: ${when.toLocaleString()}</p>` : ``}
         <div class="maintenance-actions">
         ${config.contact?.whatsapp ? `<a class="btn ghost" href="${config.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ``}
           ${config.contact?.email ? `<a class="btn ghost" href="mailto:${config.contact.email}">Email</a>` : ``}
+          
         </div>
-        <p class="muted" style="margin-top:10px">
-          If you're the site owner, add <span class="mono">?bypass=1</span> to the URL to preview the site.
-        </p>
+
       </div>
     </section>
   `;
 }
+
+
+
 
 // Quick check used in bootstrap + navigation
 async function enforceMaintenance(){
@@ -279,6 +287,7 @@ async function enforceMaintenance(){
   } else {
     document.body.classList.remove('maintenance');
     document.documentElement.classList.remove('pre-maint');   // ⟵ NEW: show chrome instantly
+    document.documentElement.style.removeProperty('--maint-bg');
     return false; // continue normal site
   }
 }
