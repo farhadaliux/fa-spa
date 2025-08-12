@@ -1,6 +1,6 @@
 {
-  "enabled": true,
-  "message": "I'm improving the site right now.",
+  "enabled": false,
+  "message": "I'm improving the server right now.",
   "availableAt": "2025-08-20T18:00:00+06:00",
   "contact": {
     "whatsapp": "https://wa.me/8801717959838",
