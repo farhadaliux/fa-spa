@@ -365,7 +365,7 @@ function renderHome(container){
   container.innerHTML = `
     <section class="hero">
       <div>
-        <h1 class="title">UX Researcher & Product Designer</h1>
+        <h1 class="title">UX Designer</h1>
         <p class="sub">I combine research, IA, and accessible design to ship simple, trustworthy experiences.</p>
       </div>
       <div aria-hidden="true" class="center">
