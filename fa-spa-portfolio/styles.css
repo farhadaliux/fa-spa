@@ -199,6 +199,31 @@ body {
   background: none;
 }
 
+/* Remove blue flash on click (pressed/active highlight) */
+.icon-btn {
+  background: transparent;                 /* default */
+  -webkit-tap-highlight-color: transparent;/* mobile tap flash */
+  appearance: none;                        /* normalize */
+}
+
+/* keep hover clean */
+.icon-btn:hover { background: transparent; }
+
+/* kill the pressed fill */
+.icon-btn:active { background: transparent; }
+
+/* accessible focus (keyboard only) */
+.icon-btn:focus { outline: none; }         /* remove UA focus */
+.icon-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* (Firefox) remove inner focus ring/padding */
+.icon-btn::-moz-focus-inner { border: 0; }
+
+
+
 /* Drawer */
 .drawer {
   border: 0;
