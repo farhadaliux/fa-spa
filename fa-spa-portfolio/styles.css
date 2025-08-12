@@ -124,7 +124,7 @@ body {
 
 /* Header */
 .app-header {
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 100;
   background: var(--surface);
