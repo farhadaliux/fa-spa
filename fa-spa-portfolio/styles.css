@@ -222,8 +222,6 @@ body {
 /* (Firefox) remove inner focus ring/padding */
 .icon-btn::-moz-focus-inner { border: 0; }
 
-
-
 /* Drawer */
 .drawer {
   border: 0;
@@ -238,7 +236,7 @@ body {
 
 .drawer .drawer-header {
   display: flex;
-  height: 120px !important;
+  height: 100px !important;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
@@ -421,7 +419,7 @@ main {
 
 @media (max-width:640px) {
   .header-inner {
-    height: 120px
+    height: 100px
   }
 
   .nav-list {
