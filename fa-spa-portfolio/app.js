@@ -257,8 +257,8 @@ function renderMaintenanceScreen(config = {}){
         <p class="sub">${escapeHtml(msg)}</p>
         ${when ? `<p class="mono">Back by: ${when.toLocaleString()}</p>` : ``}
         <div class="maintenance-actions">
+        ${config.contact?.whatsapp ? `<a class="btn ghost" href="${config.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ``}
           ${config.contact?.email ? `<a class="btn ghost" href="mailto:${config.contact.email}">Email</a>` : ``}
-          ${config.contact?.whatsapp ? `<a class="btn ghost" href="${config.contact.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>` : ``}
         </div>
         <p class="muted" style="margin-top:10px">
           If you're the site owner, add <span class="mono">?bypass=1</span> to the URL to preview the site.
