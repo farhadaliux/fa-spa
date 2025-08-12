@@ -1166,3 +1166,47 @@ main {
   max-width: 60ch; display:inline-block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
   vertical-align:bottom;
 }
+
+
+/* Dev badge */
+.dev-badge{
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 9999;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #D13438; /* danger/red */
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+/* Optional: light layout debug when dev mode is on */
+body.dev-mode *{
+  outline: 1px dashed rgba(15,108,189,.18);
+  outline-offset: -1px;
+}
+
+/* Dev badge */
+.dev-badge{
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 9999;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #D13438; /* red */
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+/* Optional: show light outlines of everything when dev mode is ON */
+body.dev-mode *{
+  outline: 1px dashed rgba(15,108,189,.18);
+  outline-offset: -1px;
+}
+

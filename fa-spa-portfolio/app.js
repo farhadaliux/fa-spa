@@ -22,6 +22,28 @@ async function bootstrap(){
 
     setupHeader();
     setupContact();
+    // ---- Dev Mode init (global ON by default) ----
+// URL overrides win first
+const urlDevOn  = /[?#&]dev=1\b/.test(location.href);
+const urlDevOff = /[?#&]dev=0\b/.test(location.href);
+
+if (urlDevOn) {
+  devSet(true);
+} else if (urlDevOff) {
+  devSet(false);
+} else if (DEV_DEFAULT || DEV_AUTO) {
+  // force ON site-wide by default
+  devSet(true);
+} else if (devIsOn()) {
+  // respect saved choice
+  document.body.classList.add('dev-mode');
+}
+devUpdateBadge();
+
+    // reflect saved dev mode on first load
+if (devIsOn()) document.body.classList.add('dev-mode');
+devUpdateBadge();
+
     document.getElementById("year").textContent = new Date().getFullYear();
     document.getElementById("lastUpdated").textContent = new Date(document.lastModified).toLocaleDateString();
   } finally {
@@ -145,6 +167,29 @@ let __loaderTimer = null;
 let __loaderProgress = 0;
 let __loaderStart = 0;
 
+// ---- Dev Mode helpers (no conflicts) ----
+function devIsOn(){ return localStorage.getItem('devMode') === '1'; }
+
+function devSet(on){
+  if (on){ localStorage.setItem('devMode','1'); document.body.classList.add('dev-mode'); }
+  else   { localStorage.removeItem('devMode');   document.body.classList.remove('dev-mode'); }
+  devUpdateBadge();
+}
+
+function devUpdateBadge(){
+  const b = document.getElementById('devBadge');
+  if (!b) return;
+  b.hidden = !devIsOn();
+}
+
+// Keyboard shortcut: Alt + D toggles dev mode
+window.addEventListener('keydown', (e)=>{
+  if (e.altKey && (e.key === 'd' || e.key === 'D')){
+    devSet(!devIsOn());
+  }
+});
+
+
 const MIN_VISIBLE_MS = 650;  // keep bar visible at least ~0.65s
 const STEP_MS = 80;          // how often we bump progress
 const MAX_BEFORE_FINISH = 90; // creep up to 90% while “loading”
@@ -195,6 +240,11 @@ function finishLoadingBar(){
     }, 180);
   }, wait);
 }
+// Turn this ON to ship dev mode by default (set back to false later)
+const DEV_DEFAULT = true;
+
+// Optional: also auto-enable on localhost / pages.dev
+const DEV_AUTO = /(?:localhost|\.pages\.dev)$/i.test(location.hostname);
 
 /* ---------- Router ---------- */
 function onRoute(){
@@ -231,9 +281,12 @@ if (mobileNav?.open) mobileNav.close();
   } else if (parts[0] === "about"){
     renderAbout(main);
     setActive("#/about");
-  } else {
+  } else if (parts[0] === "dev"){
+    renderDevPage(main);  }
+  else {
     renderNotFound(main);
   }
+  
 
   // --- Breadcrumbs helper (drop-in) ---
 window.Breadcrumbs = {
@@ -570,6 +623,27 @@ function renderAbout(container){
     </section>
   `;
 }
+
+function renderDevPage(container){
+  // simple page with enable/disable buttons
+  container.innerHTML = `
+    <section class="section">
+      <h1 class="title">Developer Mode</h1>
+      <p class="sub">Enable local development tools for this browser only.</p>
+
+      <div style="display:flex; gap:8px; margin-top:12px">
+        <button class="btn" id="devEnable" type="button">Enable</button>
+        <button class="btn ghost" id="devDisable" type="button">Disable</button>
+      </div>
+
+      <p class="muted" style="margin-top:10px">Shortcut: <kbd>Alt</kbd> + <kbd>D</kbd> to toggle.</p>
+    </section>
+  `;
+
+  container.querySelector('#devEnable').addEventListener('click', ()=> devSet(true));
+  container.querySelector('#devDisable').addEventListener('click', ()=> devSet(false));
+}
+
 
 function renderNotFound(container){
   container.innerHTML = `<section class="section"><h1>Not found</h1><p>That page doesn’t exist. Try <a href="#/">Home</a>.</p></section>`;
