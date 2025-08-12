@@ -8,14 +8,41 @@
       }
 
       .st1 {
+        stroke-linecap: round;
+      }
+
+      .st1, .st2 {
+        fill: none;
+        stroke: #0f6cbd;
+        stroke-miterlimit: 10;
+        stroke-width: 29px;
+      }
+
+      .st2 {
+        opacity: .4;
+      }
+
+      .st3 {
         fill: #0f6cbd;
       }
     </style>
   </defs>
-  <rect class="st1" x="8.7" y="8.7" width="162.2" height="162.2" rx="35.6" ry="35.6"/>
+  <rect class="st3" x="200" y="8.7" width="179.4" height="179.2" rx="14.9" ry="14.9"/>
+  <rect class="st3" x="392.5" y="73.4" width="162.2" height="162.2" rx="35.6" ry="35.6"/>
   <g>
-    <path class="st0" d="M28.6,50.9h49.3v13.9h-34.6v18.9h31.1v13.9h-31.1v31h-14.7V50.9Z"/>
-    <path class="st0" d="M106.4,50.9h16.7l29.2,77.7h-16.2l-6.4-18.6h-30l-6.4,18.6h-16.2l29.2-77.7ZM125,96.6l-6.9-19.4-2.8-9.4h-.9l-2.8,9.4-6.9,19.4h20.4Z"/>
+    <path class="st0" d="M412.4,115.7h49.3v13.9h-34.6v18.9h31.1v13.9h-31.1v31h-14.7v-77.7Z"/>
+    <path class="st0" d="M490.2,115.7h16.7l29.2,77.7h-16.2l-6.4-18.6h-30l-6.4,18.6h-16.2l29.2-77.7ZM508.7,161.4l-6.9-19.4-2.8-9.4h-.9l-2.8,9.4-6.9,19.4h20.4Z"/>
   </g>
   <image width="586" height="774" transform="translate(-823.7 -288.2)" xlink:href="favicon-1.png"/>
+  <rect class="st2" x="-1028.3" y="-166.9" width="153.9" height="364" rx="-360.2" ry="-360.2"/>
+  <line class="st1" x1="-1041.2" y1="-40.4" x2="-843.7" y2="-40.4"/>
+  <g>
+    <g>
+      <path class="st3" d="M144.7,89.9v19.6H20.6v62.7H1v-106.2c0-34,27.6-61.6,61.6-61.6h.4c34,0,61.6,27.6,61.6,61.6v14.3s-19.6,0-19.6,0v-14.3c0-23.2-18.8-42-42-42h-.5c-23.2,0-42,18.8-42,42v23.9h124.1Z"/>
+      <rect class="st3" x="105" y="119.1" width="19.6" height="53.1"/>
+    </g>
+    <circle class="st3" cx="168.6" cy="99.7" r="9.8"/>
+  </g>
+  <image width="586" height="774" transform="translate(-7894 -7981.5)" xlink:href="favicon-2.png"/>
+  <image width="586" height="774" transform="translate(-7894 -7981.5)" xlink:href="favicon-3.png"/>
 </svg>
