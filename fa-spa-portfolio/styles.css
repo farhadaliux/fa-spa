@@ -1208,7 +1208,6 @@ body.maintenance .site-footer {
 .maintenance-card {
   max-width: 720px;
   background: var(--surface);
-  border: 1px solid var(--stroke);
   border-radius: var(--radius-l);
   box-shadow: var(--shadow-card);
   padding: 24px;
