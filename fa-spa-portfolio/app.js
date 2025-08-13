@@ -366,11 +366,11 @@ function renderHome(container) {
   container.innerHTML = `
     <section class="hero">
       <div>
-        <h1 class="title">UX Designer</h1>
-        <p class="sub">I combine research, IA, and accessible design to ship simple, trustworthy experiences.</p>
+        <h1 class="title">I’m Farhad, a Product Designer. I enjoy crafting research-led, accessible, and human-centered digital experiences.</h1>
+        <p class="sub">Currently a Lead Product Designer at <a class="senifone">Senifone</a></p>
       </div>
       <div aria-hidden="true" class="center">
-        <img src="img/placeholders/portrait.svg" alt="" />
+        <img src="img/placeholders/portrait.png" alt="" />
       </div>
     </section>
 

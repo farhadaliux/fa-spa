@@ -1,5 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
-  <rect width="320" height="240" fill="#F3F2F1"/>
-  <circle cx="160" cy="90" r="50" fill="#C8C6C4"/>
-  <rect x="80" y="160" width="160" height="50" rx="12" fill="#C8C6C4"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 380 489.4">
+  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #5383ec;
+      }
+
+      .st1 {
+        fill: #ca5040;
+      }
+
+      .st2 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="st0" x="17.6" y="17.6" width="362.4" height="471.7" rx="13" ry="13"/>
+    </clipPath>
+  </defs>
+  <image width="792" height="1069" transform="translate(-945.8 1.6) scale(.4)" xlink:href="portrait-1.png"/>
+  <g>
+    <rect class="st0" y="0" width="362.4" height="471.7" rx="13" ry="13"/>
+    <g>
+      <rect class="st0" x="17.6" y="17.6" width="362.4" height="471.7" rx="13" ry="13"/>
+      <g class="st2">
+        <image width="3580" height="4656" transform="translate(16.1 15.8) scale(.1)" xlink:href="IMG_0951.jpg"/>
+      </g>
+    </g>
+  </g>
+  <rect class="st1" x="-585.9" y="74.3" width="167.3" height="136.5"/>
 </svg>
