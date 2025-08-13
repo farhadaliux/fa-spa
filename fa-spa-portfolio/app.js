@@ -367,7 +367,7 @@ function renderHome(container) {
     <section class="hero">
       <div>
         <h1 class="title">I’m Farhad, a Product Designer. I enjoy crafting research-led, accessible, and human-centered digital experiences.</h1>
-        <p class="sub">Currently a Lead Product Designer at <a class="senifone">Senifone</a></p>
+        <p class="sub">Currently Lead Product Designer at <a class="senifone">Senifone</a></p>
       </div>
       <div aria-hidden="true" class="center">
         <img src="img/placeholders/portrait.png" alt="" />
