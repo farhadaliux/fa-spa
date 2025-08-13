@@ -1304,7 +1304,7 @@ body.maintenance .maintenance-screen {
 
 .maintenance-card .mono{
  color: #111111;
- font-size: 16px;
+ font-size: 14px;
 }
 
 @media (prefers-color-scheme: dark) {
