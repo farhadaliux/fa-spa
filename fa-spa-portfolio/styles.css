@@ -1295,6 +1295,12 @@ body.maintenance .maintenance-screen {
   background: rgba(255, 255, 255, .85);
   backdrop-filter: blur(4px);
 }
+.maintenance-card h1{
+ color: #111111;
+ line-height: 1.3;
+ font-size: 48px;
+ font-weight: 700;
+}
 
 @media (prefers-color-scheme: dark) {
   .maintenance-card {
