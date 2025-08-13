@@ -1302,6 +1302,10 @@ body.maintenance .maintenance-screen {
  font-weight: 700;
 }
 
+.maintenance-card .mono{
+ color: #111111;
+}
+
 @media (prefers-color-scheme: dark) {
   .maintenance-card {
     color: #fff;
