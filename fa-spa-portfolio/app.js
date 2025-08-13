@@ -259,6 +259,10 @@ function renderMaintenanceScreen(config = {}) {
   main.innerHTML = `
     <section class="maintenance-screen">
       <div class="maintenance-card">
+            <a href="#/" class="logo" aria-label="Farhad Ali — Home">
+        <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
+        <span class="logo-text">Farhad&nbsp;Ali</span>
+      </a>
           <h1>New case studies incoming!</h1>
         <p class="sub">${escapeHtml(msg)}</p>
         ${when ? `<p class="mono">Expected back online: ${when.toLocaleString()}</p>` : ``}
