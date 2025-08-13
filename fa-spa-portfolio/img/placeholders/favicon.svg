@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 179.6 179.6">
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 207.2 169">
   <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
   <defs>
     <style>
       .st0 {
+        opacity: .4;
+      }
+
+      .st0, .st1 {
+        fill: none;
+        stroke: #0f6cbd;
+        stroke-miterlimit: 10;
+        stroke-width: 29px;
+      }
+
+      .st0, .st2 {
+        isolation: isolate;
+      }
+
+      .st3 {
         fill: #fff;
       }
 
@@ -11,38 +26,36 @@
         stroke-linecap: round;
       }
 
-      .st1, .st2 {
-        fill: none;
-        stroke: #0f6cbd;
-        stroke-miterlimit: 10;
-        stroke-width: 29px;
+      .st4 {
+        fill: #db4437;
+        fill-rule: evenodd;
       }
 
-      .st2 {
-        opacity: .4;
-      }
-
-      .st3 {
+      .st5 {
         fill: #0f6cbd;
       }
     </style>
+    <image id="image" width="503" height="503" xlink:href="favicon-1.png"/>
   </defs>
-  <rect class="st3" x="200" y="8.7" width="179.4" height="179.2" rx="14.9" ry="14.9"/>
-  <rect class="st3" x="392.5" y="73.4" width="162.2" height="162.2" rx="35.6" ry="35.6"/>
+  <rect class="st5" x="219.2" y="5.4" width="179.4" height="179.2" rx="14.9" ry="14.9"/>
+  <rect class="st5" x="411.7" y="70.1" width="162.2" height="162.2" rx="35.6" ry="35.6"/>
   <g>
-    <path class="st0" d="M412.4,115.7h49.3v13.9h-34.6v18.9h31.1v13.9h-31.1v31h-14.7v-77.7Z"/>
-    <path class="st0" d="M490.2,115.7h16.7l29.2,77.7h-16.2l-6.4-18.6h-30l-6.4,18.6h-16.2l29.2-77.7ZM508.7,161.4l-6.9-19.4-2.8-9.4h-.9l-2.8,9.4-6.9,19.4h20.4Z"/>
+    <path class="st3" d="M431.6,112.4h49.3v13.9h-34.6v18.9h31.1v13.9h-31.1v31h-14.7v-77.7h0Z"/>
+    <path class="st3" d="M509.4,112.4h16.7l29.2,77.7h-16.2l-6.4-18.6h-30l-6.4,18.6h-16.2l29.2-77.7h.1ZM527.9,158.1l-6.9-19.4-2.8-9.4h-.9l-2.8,9.4-6.9,19.4h20.4-.1Z"/>
   </g>
-  <image width="586" height="774" transform="translate(-823.7 -288.2)" xlink:href="favicon-1.png"/>
-  <rect class="st2" x="-1028.3" y="-166.9" width="153.9" height="364" rx="-360.2" ry="-360.2"/>
-  <line class="st1" x1="-1041.2" y1="-40.4" x2="-843.7" y2="-40.4"/>
+  <use class="st2" transform="translate(-854.8 -247.7) scale(1.4)" xlink:href="#image"/>
+  <rect class="st0" x="-1009.1" y="-170.2" width="153.9" height="364"/>
+  <line class="st1" x1="-1022" y1="-43.7" x2="-824.5" y2="-43.7"/>
   <g>
     <g>
-      <path class="st3" d="M144.7,89.9v19.6H20.6v62.7H1v-106.2c0-34,27.6-61.6,61.6-61.6h.4c34,0,61.6,27.6,61.6,61.6v14.3s-19.6,0-19.6,0v-14.3c0-23.2-18.8-42-42-42h-.5c-23.2,0-42,18.8-42,42v23.9h124.1Z"/>
-      <rect class="st3" x="105" y="119.1" width="19.6" height="53.1"/>
+      <path class="st5" d="M155.9,484.6v19.6H31.8v62.7H12.2v-106.2c0-34,27.6-61.6,61.6-61.6h.4c34,0,61.6,27.6,61.6,61.6v14.3h-19.6v-14.3c0-23.2-18.8-42-42-42h-.5c-23.2,0-42,18.8-42,42v23.9h124.2Z"/>
+      <rect class="st5" x="116.2" y="513.8" width="19.6" height="53.1"/>
     </g>
-    <circle class="st3" cx="168.6" cy="99.7" r="9.8"/>
+    <circle class="st5" cx="179.8" cy="494.4" r="9.8"/>
   </g>
-  <image width="586" height="774" transform="translate(-7894 -7981.5)" xlink:href="favicon-2.png"/>
-  <image width="586" height="774" transform="translate(-7894 -7981.5)" xlink:href="favicon-3.png"/>
+  <image class="st2" width="587" height="775" transform="translate(-7874.9 -7984.7)" xlink:href="favicon-2.png"/>
+  <image class="st2" width="587" height="775" transform="translate(-7874.9 -7984.7)" xlink:href="favicon-3.png"/>
+  <use transform="translate(823.4 -194.8)" xlink:href="#image"/>
+  <path class="st5" d="M234.9,275.7v101.8h-31.7v-57.9h-56.6v-31.7h56.6v-12.2c0-24-19.5-43.6-43.6-43.6s-43.6,19.5-43.6,43.6v12.2h19.3v31.7h-19.3v57.9h-31.7v-57.9h-19.3v-31.7h19.3v-12.2c0-41.5,33.8-75.2,75.2-75.2s75.2,33.8,75.2,75.2Z"/>
+  <path class="st4" d="M163.7,167.6c-25.1-58.8-33.2-71.5-49.7-107.3-3-5.6-5.9-10.6-8.9-15,11.7-15.2,23.7-21.1,39.1-21.1h61.9V1.5h-95.5c-22.3,0-36.4,12.2-51.3,40.5l-23.5,50.7L1.1,167.6h39.7c16.6-16.6,34.2-32.3,53.2-45.1-2.9-6-5.8-12-8.9-17.9-8.1,6.3-15.7,13.3-22.8,20.9l20.2-39.8c15.1,25.1,27.9,56.7,40.8,81.9h40.5ZM130.5,78.9c17.3-6.4,36-9.8,55.8-9.2v21.3c-16.3.3-31.6,3.2-46,8.1-1.8-3.7-3.6-7.5-5.4-11.2-1.5-3-2.9-6-4.4-9h0Z"/>
 </svg>
