@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,129 +18,131 @@
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css" />
 
-<!-- Fluent UI Web Components (pinned version) -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/@fluentui/web-components@2/dist/web-components.min.js"></script>
+  <!-- Fluent UI Web Components (pinned version) -->
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@fluentui/web-components@2/dist/web-components.min.js"></script>
   <link rel="icon" href="img/placeholders/favicon.svg" type="image/svg+xml" />
 </head>
 
 
 <body>
-    <fluent-design-system-provider id="fluentTheme" accent-base-color="#0F6CBD" style="display:contents"> 
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="app-header" role="banner">
-    <!-- top loading progress bar -->
-    <div id="loading-bar" aria-hidden="true"></div>
-    <div class="container header-inner">
-      <a href="#/" class="logo" aria-label="Farhad Ali — Home">
-        <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
-        <span class="logo-text">Farhad&nbsp;Ali</span>
-      </a>
-      <nav class="primary-nav" aria-label="Primary">
-        <button id="menuBtn" class="icon-btn" aria-haspopup="dialog" aria-controls="mobileNav" aria-expanded="false">
-          <span class="sr-only">Open menu</span>
-          <!-- hamburger -->
+  <fluent-design-system-provider id="fluentTheme" accent-base-color="#0F6CBD" style="display:contents">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="app-header" role="banner">
+      <!-- top loading progress bar -->
+      <div id="loading-bar" aria-hidden="true"></div>
+      <div class="container header-inner">
+        <a href="#/" class="logo" aria-label="Farhad Ali — Home">
+          <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
+          <span class="logo-text">Farhad&nbsp;Ali</span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <button id="menuBtn" class="icon-btn" aria-haspopup="dialog" aria-controls="mobileNav" aria-expanded="false">
+            <span class="sr-only">Open menu</span>
+            <!-- hamburger -->
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+              <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" fill="currentColor" />
+            </svg>
+          </button>
+          <ul class="nav-list">
+            <li><a data-link href="#/">Home</a></li>
+            <li><a data-link href="#/work">Work</a></li>
+            <li><a data-link href="#/research">Research</a></li>
+            <li><a data-link href="#/about">About</a></li>
+            <li><button class="link-like" id="contactOpen">Contact</button></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile drawer -->
+    <dialog id="mobileNav" class="drawer" aria-label="Navigation">
+      <div class="drawer-header">
+        <a href="#/" class="logo" aria-label="Farhad Ali — Home">
+          <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
+          <span class="logo-text">Farhad&nbsp;Ali</span>
+        </a>
+
+        <button class="icon-btn" id="drawerClose" aria-label="Close menu">
           <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-            <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" fill="currentColor" />
-          </svg>
-        </button>
-        <ul class="nav-list">
-          <li><a data-link href="#/">Home</a></li>
-          <li><a data-link href="#/work">Work</a></li>
-          <li><a data-link href="#/research">Research</a></li>
-          <li><a data-link href="#/about">About</a></li>
-          <li><button class="link-like" id="contactOpen">Contact</button></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Mobile drawer -->
-  <dialog id="mobileNav" class="drawer" aria-label="Navigation">
-    <div class="drawer-header">
-      <a href="#/" class="logo" aria-label="Farhad Ali — Home">
-        <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
-        <span class="logo-text">Farhad&nbsp;Ali</span>
-      </a>
-
-      <button class="icon-btn" id="drawerClose" aria-label="Close menu">
-        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-          <path
-            d="M18.3 5.71 12 12.01l-6.29-6.3-1.41 1.41 6.29 6.3-6.3 6.29 1.42 1.42 6.29-6.3 6.29 6.3 1.41-1.41-6.29-6.3 6.3-6.29z"
-            fill="currentColor" />
-        </svg>
-      </button>
-    </div>
-    <nav>
-      <ul class="drawer-links">
-        <li><a data-link data-nav-close href="#/">Home</a></li>
-        <li><a data-link data-nav-close href="#/work">Work</a></li>
-        <li><a data-link data-nav-close href="#/research">Research</a></li>
-        <li><a data-link data-nav-close href="#/about">About</a></li>
-        <li><button class="link-like" id="contactOpenMobile" data-nav-close>Contact</button></li>
-      </ul>
-    </nav>
-  </dialog>
-
-  <div class="container">
-    <nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb"></nav>
-  </div>
-  <main id="main" class="container" tabindex="-1"></main>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-flex">
-      <div class="footer-about">
-        <div class="logo">Farhad&nbsp;Ali</div>
-        <p class="tagline">UX Designer</p>
-      </div>
-      <div class="footer-contact">
-        <a class="social" href="https://wa.me/8801717959838" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
-        <a class="social" href="mailto:farhadali.ux@gmail.com" aria-label="Email">@</a>
-        <a class="social" href="#" aria-label="LinkedIn (add URL)">in</a>
-        <a class="social" href="#" aria-label="GitHub (add URL)">gh</a>
-      </div>
-      <div class="footer-meta">
-        <div>📧 <a href="mailto:farhadali.ux@gmail.com">farhadali.ux@gmail.com</a></div>
-        <div>Last updated: <span id="lastUpdated"></span></div>
-        <div>© <span id="year"></span> Farhad Ali</div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Contact Modal -->
-  <dialog id="contactModal" class="modal" aria-labelledby="contactTitle">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h2 id="contactTitle">Contact Farhad</h2>
-        <button class="icon-btn" id="contactClose" aria-label="Close dialog">
-          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
             <path
               d="M18.3 5.71 12 12.01l-6.29-6.3-1.41 1.41 6.29 6.3-6.3 6.29 1.42 1.42 6.29-6.3 6.29 6.3 1.41-1.41-6.29-6.3 6.3-6.29z"
               fill="currentColor" />
           </svg>
         </button>
       </div>
-      <div class="modal-body contact-grid">
-        <a class="contact-tile" href="https://wa.me/8801717959838" target="_blank" rel="noopener">
-          <img src="img/placeholders/whatsapp.svg" alt="" aria-hidden="true">
-          <div>
-            <div class="tile-title">Open WhatsApp</div>
-            <div class="tile-sub">+880 1717-959-838</div>
-          </div>
-        </a>
-        <a class="contact-tile" href="mailto:farhadali.ux@gmail.com">
-          <img src="img/placeholders/gmail.svg" alt="" aria-hidden="true">
-          <div>
-            <div class="tile-title">Email Farhad</div>
-            <div class="tile-sub">farhadali.ux@gmail.com</div>
-          </div>
-        </a>
-        <p class="muted">Prefer a form? Use your email client to write me—I'll reply quickly.</p>
-      </div>
-    </div>
-  </dialog>
+      <nav>
+        <ul class="drawer-links">
+          <li><a data-link data-nav-close href="#/">Home</a></li>
+          <li><a data-link data-nav-close href="#/work">Work</a></li>
+          <li><a data-link data-nav-close href="#/research">Research</a></li>
+          <li><a data-link data-nav-close href="#/about">About</a></li>
+          <li><button class="link-like" id="contactOpenMobile" data-nav-close>Contact</button></li>
+        </ul>
+      </nav>
+    </dialog>
 
-  <script src="app.js" defer></script>
- </fluent-design-system-provider>
+    <div class="container">
+      <nav id="breadcrumbs" class="breadcrumbs" aria-label="Breadcrumb"></nav>
+    </div>
+    <main id="main" class="container" tabindex="-1"></main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-flex">
+        <div class="footer-about">
+          <div class="logo">Farhad&nbsp;Ali</div>
+          <p class="tagline">UX Designer</p>
+        </div>
+        <div class="footer-contact">
+          <a class="social" href="https://wa.me/8801717959838" target="_blank" rel="noopener"
+            aria-label="WhatsApp">WA</a>
+          <a class="social" href="mailto:farhadali.ux@gmail.com" aria-label="Email">@</a>
+          <a class="social" href="#" aria-label="LinkedIn (add URL)">in</a>
+          <a class="social" href="#" aria-label="GitHub (add URL)">gh</a>
+        </div>
+        <div class="footer-meta">
+          <div>📧 <a href="mailto:farhadali.ux@gmail.com">farhadali.ux@gmail.com</a></div>
+          <div>Last updated: <span id="lastUpdated"></span></div>
+          <div>© <span id="year"></span> Farhad Ali</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <dialog id="contactModal" class="modal" aria-labelledby="contactTitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h2 id="contactTitle">Contact Farhad</h2>
+          <button class="icon-btn" id="contactClose" aria-label="Close dialog">
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M18.3 5.71 12 12.01l-6.29-6.3-1.41 1.41 6.29 6.3-6.3 6.29 1.42 1.42 6.29-6.3 6.29 6.3 1.41-1.41-6.29-6.3 6.3-6.29z"
+                fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body contact-grid">
+          <a class="contact-tile" href="https://wa.me/8801717959838" target="_blank" rel="noopener">
+            <img src="img/placeholders/whatsapp.svg" alt="" aria-hidden="true">
+            <div>
+              <div class="tile-title">Open WhatsApp</div>
+              <div class="tile-sub">+880 1717-959-838</div>
+            </div>
+          </a>
+          <a class="contact-tile" href="mailto:farhadali.ux@gmail.com">
+            <img src="img/placeholders/gmail.svg" alt="" aria-hidden="true">
+            <div>
+              <div class="tile-title">Email Farhad</div>
+              <div class="tile-sub">farhadali.ux@gmail.com</div>
+            </div>
+          </a>
+          <p class="muted">Prefer a form? Use your email client to write me—I'll reply quickly.</p>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="app.js" defer></script>
+  </fluent-design-system-provider>
 
 </body>
 
