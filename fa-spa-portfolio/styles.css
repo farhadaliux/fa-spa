@@ -115,10 +115,10 @@ fluent-design-system-provider {
 /* Use the variable everywhere */
 .section { padding-block: var(--section-y); }
 
-/* Optional: make hero follow the same rhythm
+/* Optional: make hero follow the same rhythm */
 .hero {
-  margin-block: var(--section-y);
-} */
+  margin-top: 50px;
+}
 
 /* Fluent 2-ish tokens */
 :root {
