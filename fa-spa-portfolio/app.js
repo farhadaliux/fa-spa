@@ -364,23 +364,35 @@ function setActive() {
 /* ---------- Renderers ---------- */
 function renderHome(container) {
   container.innerHTML = `
-    <section class="hero">
+    <section class="hero section" aria-labelledby="home-hero">
       <div>
-        <h1 class="title">I’m Farhad, a Product Designer. Who enjoy creating research-led, human-centered digital experiences.</h1>
-        <p class="sub">Currently Lead Product Designer at <a class="senifone" href="#" target="_blank" rel="noopener">Senifone</a></p>
+        <h1 id="home-hero" class="title">
+          I’m Farhad, a Product Designer. I enjoy creating research-led, human-centered digital experiences.
+        </h1>
+        <p class="sub">
+          Currently Lead Product Designer at
+          <fluent-anchor appearance="hypertext" class="senifone" href="#" target="_blank" rel="noopener">Senifone</fluent-anchor>
+        </p>
+
+        <div class="cta-row">
+        
+          <fluent-anchor appearance="accent" href="#/work">SeeCase Studies</fluent-anchor>
+          <fluent-anchor appearance="outline" href="#/research">See Research</fluent-anchor>
+        </div>
       </div>
+
       <div aria-hidden="true" class="center">
-        <img src="img/placeholders/portrait.png" alt="" />
+        <img src="img/placeholders/portrait.png" alt="">
       </div>
     </section>
 
-    <section class="section">
-      <h2>Featured Work</h2>
+    <section class="section" aria-labelledby="feat-h">
+      <h2 id="feat-h">Featured Work</h2>
       <div class="grid cols-2">
         ${works.slice(0, 4).map(workCard).join("")}
       </div>
     </section>
-    
+
     <section class="section">
       <h2>Latest Research</h2>
       <div class="grid">
@@ -396,7 +408,6 @@ function renderHome(container) {
         `).join("")}
       </div>
     </section>
-
 
     <section class="section center">
       <div>
@@ -417,6 +428,8 @@ function renderHome(container) {
   const modal = document.getElementById("contactModal");
   [c1, c2].forEach(el => el && el.addEventListener("click", () => modal.showModal()));
 }
+
+
 function cardMini(title, i) {
   const icon = ["🔎", "🛡️", "♿"][i % 3];
   return `

@@ -16,15 +16,12 @@ fluent-design-system-provider {
   /* Spacing via Fluent design unit */
   --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* desktop ~64px */
 }
+
 @media (max-width:1024px){
   fluent-design-system-provider {
     --section-y: calc(var(--design-unit, 4) * 12 * 1px); /* tablet/mobile ~48px */
   }
 }
-
-/* Apply Fluent spacing rhythm */
-.section { padding-block: var(--section-y); }
-.hero { gap: calc(var(--section-y) / 2); margin-block: var(--section-y); }
 
 /* Links (Fluent accent) */
 a { color: var(--accent-foreground-rest); }
@@ -72,7 +69,7 @@ body        { background: var(--neutral-layer-1); color: var(--neutral-foregroun
 .hero .title {
   font-size: var(--type-ramp-plus-4-font-size);
   line-height: var(--type-ramp-plus-4-line-height);
-  font-weight: 700;
+  font-weight: 600;
 }
 .section h2 {
   font-size: var(--type-ramp-plus-2-font-size);
@@ -120,7 +117,6 @@ fluent-design-system-provider {
 
 /* Optional: make hero follow the same rhythm */
 .hero {
-  gap: calc(var(--section-y) / 2);
   margin-block: var(--section-y);
 }
 
@@ -520,11 +516,6 @@ main {
 }
 
 
-/* Sections */
-/* .section {
-  padding-block: 48px;
-} */
-
 .section:first-child {
   border-top: none
 }
@@ -535,16 +526,12 @@ main {
   grid-template-columns: 1fr;
   gap: 100px;
   align-items: center;
-  margin-top: 60px;
-  margin-bottom: 60px;
 }
 
 .hero .title {
   font-size: 40px;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
 }
 
 .hero p {
@@ -616,8 +603,6 @@ main {
   font-size: 32px;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
 }
 
   .nav-list {
@@ -1634,3 +1619,125 @@ body.maintenance .maintenance-card {
   #menuBtn { display:none !important; }
 }
 
+/* Make the Senifone link use Fluent accent tokens */
+.senifone { 
+  color: var(--accent-foreground-rest);
+  font-weight: 600;
+}
+.senifone:hover { color: var(--accent-foreground-hover); }
+
+/* Give content inside <fluent-card> the same inner padding as your .card */
+fluent-card .body {
+  padding: calc(var(--design-unit, 4) * 4 * 1px); /* 16px */
+}
+
+/* Hero uses type-ramp-plus-4 — make it exactly 37px */
+fluent-design-system-provider {
+  --type-ramp-plus-4-font-size: 37px;
+  --type-ramp-plus-4-line-height: 44px; /* ~1.19 for clean rhythm */
+}
+
+
+.hero .title{
+  font-size: 37px;
+  line-height: 44px;
+  font-weight: 600;
+}
+@media (max-width:640px){
+  .hero .title{ font-size: 32px; line-height: 40px; }
+}
+
+/* Bigger, Fluent-y buttons (medium+) */
+fluent-design-system-provider#fluentTheme {
+  --control-height: 44px;          /* button height */
+  --control-corner-radius: 8px;     /* Fluent 2 corners */
+  --design-unit: 4;                 /* spacing base (default) */
+}
+
+/* tidy alignment in your CTA row */
+.cta-row { gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* nudges outline to accent without fighting the component */
+.accent-outline {
+  --neutral-foreground-rest: var(--accent-foreground-rest);
+  --neutral-stroke-rest: var(--accent-stroke-control-rest);
+  --neutral-foreground-hover: var(--accent-foreground-hover);
+  --neutral-stroke-hover: var(--accent-stroke-control-hover);
+}
+
+/* In your provider */
+#fluentTheme {
+  --control-height: 40px;          /* desktop/tablet */
+  --control-corner-radius: 8px;     /* Fluent 2 corners */
+}
+
+/* Mobile can be a touch smaller if you want */
+@media (max-width:640px){
+  #fluentTheme { --control-height: 36px; }
+}
+
+/* Row spacing only */
+.cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+
+/* ===== Fluent Section System ===== */
+
+/* Use Fluent design-unit for vertical rhythm */
+fluent-design-system-provider {
+  --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* ≈64px desktop */
+}
+@media (max-width:1024px){
+  fluent-design-system-provider { --section-y: calc(var(--design-unit,4) * 12 * 1px); } /* ≈48px */
+}
+
+/* Base section */
+.section {
+  padding-block: var(--section-y);
+}
+
+/* Variants */
+.section--tight   { padding-block: calc(var(--section-y) / 2); }
+.section--loose   { padding-block: calc(var(--section-y) * 1.5); }
+.section--alt     { background: var(--neutral-layer-2); }    /* subtle banded background */
+.section--surface { background: var(--neutral-layer-1); }    /* card-like surface */
+
+/* Head styles (match Fluent type ramp) */
+.section .eyebrow {
+  color: var(--neutral-foreground-hint);
+  font-size: var(--type-ramp-minus-1-font-size);
+  line-height: var(--type-ramp-minus-1-line-height);
+  font-weight: 600;
+  letter-spacing: .02em;
+  margin: 0 0 8px 0;
+}
+
+.section > h2,
+.section .h2 {
+  font-size: var(--type-ramp-plus-2-font-size);
+  line-height: var(--type-ramp-plus-2-line-height);
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+/* Optional subhead */
+.section .subhead {
+  color: var(--neutral-foreground-hint);
+  margin: 0 0 20px 0;
+  font-size: var(--type-ramp-base-font-size);
+  line-height: var(--type-ramp-base-line-height);
+}
+
+/* Section divider (Fluent component) */
+fluent-divider.section-div {
+  display: block;
+  margin-block: calc(var(--section-y) / 2);
+}
+fluent-divider.section-div::part(divider) {
+  border-color: var(--neutral-stroke-rest);
+  opacity: .9;
+}
+
+/* Full-bleed divider if you want it to span edge-to-edge */
+.section-div.bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
