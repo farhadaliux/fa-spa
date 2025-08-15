@@ -1,0 +1,1745 @@
+/* === Fluent bridge (paste at TOP of styles.css) === */
+fluent-design-system-provider {
+  /* Surfaces & text */
+  --bg: var(--neutral-layer-1);
+  --surface: var(--neutral-layer-1);
+  --bg-subtle: var(--neutral-layer-2);
+  --surface-alt: var(--neutral-layer-3);
+  --fg-primary: var(--neutral-foreground-rest);
+  --fg-secondary: var(--neutral-foreground-hint);
+  --stroke: var(--neutral-stroke-rest);
+
+  /* Brand */
+  --brand-primary: var(--accent-fill-rest);
+  --brand-on: var(--neutral-foreground-rest);
+
+  /* Spacing via Fluent design unit */
+  --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* desktop ~64px */
+}
+
+@media (max-width:1024px){
+  fluent-design-system-provider {
+    --section-y: calc(var(--design-unit, 4) * 12 * 1px); /* tablet/mobile ~48px */
+  }
+}
+
+/* Links (Fluent accent) */
+a { color: var(--accent-foreground-rest); }
+a:hover { color: var(--accent-foreground-hover); }
+
+/* Focus (Fluent-ish) */
+:focus-visible {
+  outline: 2px solid var(--focus-stroke-outer, var(--accent-stroke-control-rest, #0F6CBD));
+  outline-offset: 3px;
+}
+
+/* Use Fluent corner + stroke everywhere */
+:root, fluent-design-system-provider {
+  --radius-s: calc(var(--control-corner-radius, 8px) * .5);
+  --radius-m: var(--control-corner-radius, 8px);
+  --radius-l: calc(var(--control-corner-radius, 8px) * 1.5);
+  --radius-pill: 999px;
+}
+
+/* Buttons you still keep as custom .btn (optional) */
+.btn {
+  border-radius: var(--radius-m);
+  border: 1px solid var(--accent-stroke-control-rest);
+  background: var(--accent-fill-rest);
+  color: var(--neutral-foreground-on-accent-rest);
+}
+.btn:hover   { background: var(--accent-fill-hover);   border-color: var(--accent-stroke-control-hover); }
+.btn:active  { background: var(--accent-fill-active);  border-color: var(--accent-stroke-control-active); }
+.btn.ghost   { background: transparent; color: var(--accent-foreground-rest); border-color: var(--accent-stroke-control-rest); }
+.btn.ghost:hover { background: var(--neutral-layer-2); }
+
+/* Cards look Fluent */
+.card, fluent-card {
+  background: var(--neutral-layer-1);
+  border: 1px solid var(--neutral-stroke-rest);
+  border-radius: var(--radius-m);
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.04);
+}
+
+body        { background: var(--neutral-layer-1); color: var(--neutral-foreground-rest); }
+.site-footer{ background: var(--neutral-layer-2); border-top: 1px solid var(--neutral-stroke-rest); }
+
+
+/* Type ramp for hero/title using Fluent tokens */
+.hero .title {
+  font-size: var(--type-ramp-plus-4-font-size);
+  line-height: var(--type-ramp-plus-4-line-height);
+  font-weight: 600;
+}
+.section h2 {
+  font-size: var(--type-ramp-plus-2-font-size);
+  line-height: var(--type-ramp-plus-2-line-height);
+  font-weight: 700;
+}
+
+
+/* Make custom tokens follow Fluent's design tokens */
+:root {
+  --fg-primary: var(--neutral-foreground-rest);
+  --fg-secondary: var(--neutral-foreground-hint, #5E5E5E);
+  --brand-primary: var(--accent-fill-rest);
+  --stroke: var(--neutral-stroke-rest);
+}
+
+/* Bridge my site tokens to Fluent tokens (scoped to provider) */
+fluent-design-system-provider {
+  --fg-primary: var(--neutral-foreground-rest);
+  --fg-secondary: var(--neutral-foreground-hint, #5E5E5E);
+  --brand-primary: var(--accent-fill-rest);
+  --stroke: var(--neutral-stroke-rest);
+}
+/* Scope my site tokens to Fluent's provider (theme container) */
+fluent-design-system-provider {
+  /* bridge to Fluent tokens */
+  --fg-primary: var(--neutral-foreground-rest);
+  --fg-secondary: var(--neutral-foreground-hint, #5E5E5E);
+  --brand-primary: var(--accent-fill-rest);
+  --stroke: var(--neutral-stroke-rest);
+
+  /* Section spacing driven by Fluent's design unit (4px default) */
+  --section-y: calc(var(--design-unit, 4) * 12 * 1px); /* 48px mobile/tablet */
+}
+
+/* Desktop: a touch roomier */
+@media (min-width: 1025px) {
+  fluent-design-system-provider {
+    --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* 64px desktop */
+  }
+}
+
+/* Use the variable everywhere */
+.section { padding-block: var(--section-y); }
+
+/* Optional: make hero follow the same rhythm */
+.hero {
+  margin-top: 50px;
+}
+
+/* Fluent 2-ish tokens */
+:root {
+  --brand-primary: #0F6CBD;
+  --brand-on: #FFFFFF;
+
+  --bg: #FFFFFF;
+  --bg-subtle: #F5F5F5;
+  --surface: #FFFFFF;
+  --surface-alt: #F3F2F1;
+  --stroke: #E1DFDD;
+
+  --fg-primary: #111111;
+  --fg-secondary: #5E5E5E;
+
+  --success: #107C10;
+  --warning: #FFC83D;
+  --danger: #D13438;
+
+  --focus: #0F6CBD;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, .06), 0 2px 6px rgba(0, 0, 0, .04);
+  --shadow-overlay: 0 6px 20px rgba(0, 0, 0, .18);
+
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 12px;
+  --radius-pill: 999px;
+
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  --maxw: 1260px;
+}
+
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI Variable", "Segoe UI", Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color: var(--fg-primary);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto
+}
+
+a {
+  color: var(--brand-primary);
+  text-decoration: none
+}
+
+a:hover {
+  text-decoration: none
+}
+
+button {
+  font: inherit
+}
+
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-inline: 20px
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: none
+}
+
+/* header fixes */
+
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
+/* Always reserve space for a vertical scrollbar */
+body {
+  overflow-y: scroll;
+}
+
+/* (optional) only if you don't want it on modern browsers */
+@supports (scrollbar-gutter: stable) {
+  body {
+    overflow-y: auto;
+  }
+}
+
+/* Round SVG logo sizing */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+@media (min-width:1025px) {
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Header height driven by Fluent design unit (4px by default) */
+fluent-design-system-provider {
+  --header-h: calc(var(--design-unit, 4) * 18 * 1px); /* 64px desktop/tablet */
+}
+
+@media (max-width: 640px) {
+  fluent-design-system-provider {
+    --header-h: calc(var(--design-unit, 4) * 18 * 1px); /* 56px mobile */
+  }
+}
+
+/* Apply it */
+.header-inner { height: var(--header-h); }
+.drawer .drawer-header { height: var(--header-h) !important; }
+
+/* Keep the logo and icon sizing proportional */
+.logo-mark { width: clamp(24px, calc(var(--header-h) * 0.45), 32px);  }
+
+
+/* Ensure tap targets meet 44px minimum */
+.icon-btn { min-height: 44px; min-width: 44px; }
+
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  background: var(--brand-primary);
+  color: var(--brand-on);
+  padding: 8px 12px;
+  border-radius: var(--radius-s);
+}
+
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  z-index: 9999
+}
+
+/* Header */
+.app-header {
+  position: relative;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-list a:hover {
+  color: #0F6CBD;
+  transition: 0.8s;
+}
+
+.nav-list a:hover,
+.drawer-links a:hover,
+.nav-list .link-like:hover,
+.drawer-links .link-like:hover {
+  color: var(--brand-primary) !important;
+  cursor: pointer;
+}
+
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+}
+
+.logo {
+  font-weight: 700;
+  color: var(--fg-primary);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.primary-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center
+}
+
+.nav-list {
+  display: none;
+  list-style: none;
+  align-items: center;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.nav-list a,
+.link-like {
+  color: var(--fg-primary);
+  font-weight: 500;
+  border: 0;
+  background: none;
+  padding: 8px 0;
+  cursor: pointer
+}
+
+.nav-list a[aria-current="page"] {
+  color: var(--brand-primary) !important
+}
+
+.icon-btn {
+  border: none;
+  background: var(--surface);
+
+  cursor: pointer
+}
+
+.icon-btn:hover {
+  background: none;
+}
+
+/* Remove blue flash on click (pressed/active highlight) */
+.icon-btn {
+  background: transparent;
+  /* default */
+  -webkit-tap-highlight-color: transparent;
+  /* mobile tap flash */
+  appearance: none;
+  /* normalize */
+}
+
+/* keep hover clean */
+.icon-btn:hover {
+  background: transparent;
+}
+
+/* kill the pressed fill */
+.icon-btn:active {
+  background: transparent;
+}
+
+/* accessible focus (keyboard only) */
+.icon-btn:focus {
+  outline: none;
+}
+
+/* remove UA focus */
+.icon-btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* (Firefox) remove inner focus ring/padding */
+.icon-btn::-moz-focus-inner {
+  border: 0;
+}
+
+/* Drawer */
+.drawer {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none
+}
+
+.drawer::backdrop {
+  background: rgba(0, 0, 0, .3)
+}
+
+.drawer .drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: none
+}
+
+/* Drawer should be hidden when not open */
+.drawer:not([open]) {
+  display: none;
+}
+
+/* Use grid layout only while open (full-screen mobile sheet) */
+.drawer[open] {
+  display: grid;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  grid-template-rows: auto 1fr;
+}
+
+.drawer::backdrop {
+  background: rgba(0, 0, 0, .35);
+}
+
+/* Prevent page scroll while drawer is open */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Center the drawer links (your target style) */
+.drawer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+  justify-content: center !important;
+}
+
+.drawer-links a,
+.drawer-links .link-like {
+  font-size: clamp(22px, 5vw, 40px);
+  font-weight: 600;
+  color: var(--fg-primary);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* On desktop, never show the mobile drawer even if it was open */
+@media (min-width: 1025px) {
+  .drawer {
+    display: none !important;
+  }
+}
+
+
+.drawer .drawer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.drawer a,
+.drawer button {
+  display: inline-flex;
+  font-weight: 700;
+  color: var(--fg-primary);
+  background: none;
+  border: none;
+  text-align: center
+}
+
+/* Main */
+main {
+  padding-block: 0px 48px;
+  min-height: 60vh
+}
+
+
+/* pin style */
+.gate {
+  display: grid;
+  gap: 12px;
+  max-width: 360px
+}
+
+.gate input {
+  padding: 10px;
+  border: 1px solid #E1DFDD;
+  border-radius: 8px
+}
+
+
+.section:first-child {
+  border-top: none
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.hero .title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.hero p {
+  font-size: 20px;
+  color: #202124;
+
+}
+
+.senifone{
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+.hero .sub {
+  color: var(--fg-secondary)
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px
+}
+
+.btn {
+  border-radius: var(--radius-m);
+  padding: 10px 16px;
+  border: 1px solid var(--brand-primary);
+  background: var(--brand-primary);
+  color: var(--brand-on);
+  font-weight: 600
+}
+
+.btn:hover {
+  filter: brightness(.95)
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--brand-primary)
+}
+
+.btn.ghost:hover {
+  background: rgba(15, 108, 189, .06)
+}
+
+/* Cards grid */
+.grid {
+  display: grid;
+  gap: 24px
+}
+
+.grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr)
+}
+
+.grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr)
+}
+
+@media (max-width:1024px) {
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, 1fr)
+  }
+}
+
+@media (max-width:640px) {
+  .hero .title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+  .nav-list {
+    display: none;
+    align-items: center;
+  }
+
+  .hero {
+    grid-template-columns: 1fr
+  }
+
+  .grid.cols-3,
+  .grid.cols-2 {
+    grid-template-columns: 1fr
+  }
+}
+
+@media (min-width:1025px) {
+  .nav-list {
+    display: flex;
+    align-items: center;
+  }
+
+  #menuBtn {
+    display: none
+  }
+
+  .hero {
+    grid-template-columns: 1.4fr .6fr
+  }
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  box-shadow: var(--shadow-card)
+}
+
+.card .thumb {
+  aspect-ratio: 16/9;
+  background: var(--surface-alt);
+  position: relative
+}
+
+.card .thumb .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: .2s
+}
+
+.card:hover .thumb .overlay {
+  opacity: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, .15))
+}
+
+.card .thumb .overlay a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none
+}
+
+.card .body {
+  padding: 16px
+}
+
+.card .meta {
+  color: var(--fg-secondary);
+  font-size: 14px
+}
+
+
+
+/*  */
+/* ===== Work hero card (bg image, 730px tall) ===== */
+.work-hero {
+  position: relative;
+  isolation: isolate;
+  height: 730px;
+  /* target height (desktop) */
+  min-height: 540px;
+  /* keeps presence if fonts/images differ */
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  color: #fff;
+}
+
+/* background image */
+.work-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--img) center/cover no-repeat;
+  z-index: -2;
+}
+
+/* legibility overlay */
+.work-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .28) 40%, rgba(0, 0, 0, .55) 100%);
+  z-index: -1;
+}
+
+/* layout: text at top-left, tags at bottom-left */
+.work-hero .content {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 24px;
+  max-width: 760px;
+}
+
+.work-hero .eyebrow {
+  font-weight: 700;
+  margin-bottom: 6px;
+  opacity: .95
+}
+
+.work-hero .title {
+  font-size: clamp(28px, 4.2vw, 48px);
+  line-height: 1.12;
+  margin: 0 0 8px 0;
+  color: #fff;
+}
+
+.work-hero .sub {
+  margin: 0 0 16px 0;
+  opacity: .95;
+  font-size: clamp(16px, 2.2vw, 20px);
+}
+
+/* CTA */
+.work-hero .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: var(--radius-m);
+}
+
+.work-hero .cta:hover {
+  background: rgba(255, 255, 255, .12)
+}
+
+/* tags pinned to bottom */
+.work-hero .tags {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.work-hero .tag {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .28);
+  color: #fff;
+}
+
+/* whole card clickable, still keyboard-friendly */
+.work-hero .cover-link {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.work-hero .content a,
+.work-hero .content button,
+.work-hero .tags * {
+  position: relative;
+  z-index: 1
+}
+
+/* Responsive tweaks */
+@media (max-width: 800px) {
+  .work-hero {
+    height: 520px;
+    min-height: 420px;
+  }
+
+  .work-hero .content {
+    left: 16px;
+    right: 16px;
+    top: 16px;
+  }
+
+  .work-hero .tags {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+
+
+/* Filter chips */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px
+}
+
+.chip {
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  border: 1px solid var(--brand-primary);
+  background: transparent;
+  font-weight: 600
+}
+
+.chip[aria-pressed="true"] {
+  color: var(--brand-primary)
+}
+
+.chip:hover {
+  background: rgba(15, 108, 189, .06)
+}
+
+/* Work detail */
+.detail h1 {
+  font-size: 28px;
+  line-height: 1.3
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-block: 12px 20px
+}
+
+.kv div {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap
+}
+
+.section h2 {
+  font-size: 22px
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--stroke);
+  background: var(--bg-subtle);
+  padding-block: 24px
+}
+
+.footer-grid {
+  display: grid;
+  gap: 16px
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px
+}
+
+.tagline,
+.muted {
+  color: var(--fg-secondary)
+}
+
+@media(min-width:769px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr
+  }
+}
+
+.footer-contact .social {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  color: var(--fg-primary);
+  place-items: center;
+  border: 1px solid var(--stroke);
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Modal */
+.modal {
+  border: 0;
+  padding: 0
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, .35)
+}
+
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-l);
+  width: min(640px, 92vw);
+  box-shadow: var(--shadow-overlay)
+}
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--stroke)
+}
+
+.modal-body {
+  padding: 16px
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px
+}
+
+.contact-tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-m);
+  text-decoration: none;
+  color: inherit
+}
+
+.contact-tile:hover {
+  background: var(--bg-subtle)
+}
+
+.tile-title {
+  font-weight: 700
+}
+
+.tile-sub {
+  color: var(--fg-secondary)
+}
+
+@media(min-width:640px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+/* Utilities */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0
+}
+
+/* .center {
+  display: grid;
+  place-items: center;
+  justify-content: flex-end;
+} */
+
+
+body.maintenance .maintenance-screen::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--maint-bg) center / cover no-repeat;
+}
+
+
+.center { display: grid; place-items: center; }
+.push-right { display: grid; justify-content: end; }
+
+
+.muted {
+  color: var(--fg-secondary)
+}
+
+.spacer-16 {
+  height: 16px
+}
+
+.spacer-24 {
+  height: 24px
+}
+
+.spacer-48 {
+  height: 48px
+}
+
+/* Lock scroll when drawer is open (html + body for mobile browsers) */
+.no-scroll,
+.no-scroll body {
+  height: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+}
+
+/* Hide dialog when closed */
+.drawer:not([open]) {
+  display: none;
+}
+
+/* Fullscreen, fixed drawer that truly covers the viewport */
+.drawer[open] {
+  position: fixed;
+  /* <- important to avoid the gap */
+  inset: 0;
+  /* top/right/bottom/left = 0 */
+  width: 100vw;
+  height: 100svh;
+  /* dynamic viewport, better on mobile than 100vh */
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* add safe-area breathing room on devices with a home indicator */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.drawer::backdrop {
+  background: rgba(0, 0, 0, .35);
+}
+
+/* Center the drawer links (your desired style) */
+.drawer-links {
+  list-style: none;
+  margin: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+  padding: 24px 16px calc(env(safe-area-inset-bottom, 0) + 24px);
+}
+
+.drawer-links a,
+.drawer-links .link-like {
+  font-size: clamp(22px, 5vw, 40px);
+  font-weight: 600;
+  color: var(--fg-primary);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Active page in drawer (and desktop, if you want) */
+.drawer-links a[aria-current="page"],
+.nav-list a[aria-current="page"] {
+  color: var(--brand-primary);
+  /* use your brand token */
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Never show the mobile drawer on desktop */
+@media (min-width: 1025px) {
+  .drawer {
+    display: none !important;
+  }
+}
+
+/* Lock scroll when drawer is open (html + body for mobile browsers) */
+.no-scroll,
+.no-scroll body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Hide dialog when closed */
+.drawer:not([open]) {
+  display: none;
+}
+
+/* Fullscreen, fixed drawer that truly covers the viewport */
+.drawer[open] {
+  position: fixed;
+  /* <- important to avoid the gap */
+  inset: 0;
+  /* top/right/bottom/left = 0 */
+  width: 100vw;
+  height: 100svh;
+  /* dynamic viewport, better on mobile than 100vh */
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #fff;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* add safe-area breathing room on devices with a home indicator */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.drawer::backdrop {
+  background: rgba(0, 0, 0, .35);
+}
+
+/* Center the drawer links (your desired style) */
+.drawer-links {
+  list-style: none;
+  margin: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+  padding: 24px 16px calc(env(safe-area-inset-bottom, 0) + 24px);
+}
+
+.drawer-links a,
+.drawer-links .link-like {
+  font-size: clamp(22px, 5vw, 40px);
+  font-weight: 600;
+  color: var(--fg-primary);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Active page in drawer (and desktop, if you want) */
+.drawer-links a[aria-current="page"],
+.nav-list a[aria-current="page"] {
+  color: #0F6CBD !important;
+  /* use your brand token */
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Never show the mobile drawer on desktop */
+@media (min-width: 1025px) {
+  .drawer {
+    display: none !important;
+  }
+}
+
+/* Hide when closed */
+.drawer:not([open]) {
+  display: none;
+}
+
+/* Full-screen modal sheet (cover the visual viewport) */
+.drawer[open] {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100vw;
+  /* robust viewport stack (browser uses the last it supports) */
+  height: 100vh;
+  height: 100dvh;
+  height: 100svh;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  /* keep content above iOS home indicator */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.breadcrumbs .sep { opacity: .6; }
+/* Keep the dim, but don't let backdrop eat taps */
+.drawer::backdrop {
+  background: rgba(0, 0, 0, .35);
+  pointer-events: none;
+  /* <- prevents backdrop-click closes on buggy engines */
+}
+
+/* Center the links and add bottom safe-area padding */
+.drawer-links {
+  list-style: none;
+  margin: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+  padding: 24px 16px calc(env(safe-area-inset-bottom, 0) + 24px);
+}
+
+/* Lock page scroll while open */
+.no-scroll,
+.no-scroll body {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Active link color (works for desktop + drawer) */
+.drawer-links a[aria-current="page"],
+.nav-list a[aria-current="page"] {
+  color: var(--brand-primary);
+  font-weight: 500;
+}
+
+/* Never show the mobile drawer on desktop */
+@media (min-width: 1025px) {
+  .drawer {
+    display: none !important;
+  }
+}
+
+/* Hide dialog when closed */
+.drawer:not([open]) {
+  display: none;
+}
+
+/* Fullscreen drawer that covers the visual viewport */
+.drawer[open] {
+  position: fixed;
+  inset: 0;
+  /* top/right/bottom/left = 0 */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100vw;
+  /* stack of viewport units; browser uses the last it supports */
+  min-height: 100vh;
+  /* fallback */
+  min-height: 100dvh;
+  /* dynamic viewport (Chrome/Safari 16+) */
+  min-height: 100svh;
+  /* small viewport (iOS) */
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: #fff;
+  overflow: auto;
+  /* drawer scrolls, not the page */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Dim the background; do not let backdrop intercept taps */
+.drawer::backdrop {
+  background: rgba(0, 0, 0, .35);
+  pointer-events: none;
+}
+
+/* Center the links and respect safe area at the bottom */
+.drawer-links {
+  list-style: none;
+  margin: 0;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  gap: 28px;
+  padding: 24px 16px calc(env(safe-area-inset-bottom, 0) + 24px);
+}
+
+/* Hard page scroll lock while drawer is open */
+.no-scroll-fixed {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Highlight current page link (works in desktop & drawer) */
+.drawer-links a[aria-current="page"],
+.nav-list a[aria-current="page"] {
+  color: var(--brand-primary);
+  font-weight: 500;
+}
+
+/* Active link highlight for both desktop nav and mobile drawer */
+.nav-list a[aria-current="page"],
+.drawer-links a[aria-current="page"] {
+  color: var(--brand-primary);
+  /* or your active color variable */
+  font-weight: 500;
+}
+
+/* Contact (button) should behave like a link on hover */
+.nav-list .link-like,
+.drawer-links .link-like {
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 8px 0;
+}
+
+/* Hover color for BOTH anchors and the link-like button */
+@media (hover:hover) {
+
+  .nav-list a:hover,
+  .nav-list .link-like:hover,
+  .drawer-links a:hover,
+  .drawer-links .link-like:hover {
+    color: #0F6CBD !important;
+    /* ensure it beats earlier base color */
+    text-decoration: none;
+    transition: 0.8s;
+    cursor: pointer;
+  }
+}
+
+/* Optional: keyboard focus parity */
+.nav-list .link-like:focus-visible,
+.drawer-links .link-like:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+#loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: #0F6CBD;
+  z-index: 9999;
+  opacity: 0;
+  transition: width .3s ease, opacity .15s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #loading-bar {
+    transition: none;
+  }
+}
+
+
+.breadcrumbs {
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.breadcrumbs a {
+  color: var(--brand-primary);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: none;
+}
+
+.breadcrumbs .sep {
+  margin: 0 6px;
+  color: var(--fg-secondary);
+}
+
+
+.breadcrumbs [aria-current="page"] {
+  text-transform: capitalize;
+  max-width: 60ch;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+
+
+/* ===== Maintenance Mode ===== */
+body.maintenance .app-header,
+body.maintenance .drawer,
+body.maintenance .site-footer {
+  display: none !important;
+}
+
+.maintenance-screen {
+  min-height: 90dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.maintenance-card {
+  max-width: 720px;
+  background: var(--surface);
+  border-radius: var(--radius-l);
+}
+
+.maintenance-card h1 {
+  margin: 0 0 20px 0;
+  font-size: 50px;
+}
+
+.maintenance-card p.sub {
+  color: var(--fg-secondary);
+  margin: 0 0 20px 0;
+  font-size: 20px;
+}
+
+.maintenance-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+
+/* Prevent header/footer flash before maintenance check resolves */
+.pre-maint .app-header,
+.pre-maint .drawer,
+.pre-maint .site-footer {
+  visibility: hidden;
+  /* keeps layout stable, no jump */
+}
+
+/* Dynamic background for Under-Construction */
+:root {
+  --maint-bg: none;
+}
+
+body.maintenance .maintenance-screen {
+  position: relative;
+  isolation: isolate;
+  min-height: 100dvh;
+}
+
+
+/* Glassy card */
+.maintenance-card {
+  background: rgba(255, 255, 255, .85);
+  backdrop-filter: blur(4px);
+}
+.maintenance-card h1{
+ color: #111111;
+ line-height: 1.3;
+ font-size: 48px;
+ font-weight: 700;
+}
+
+.maintenance-card .mono{
+ color: #111111;
+ font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .maintenance-card {
+    color: #fff;
+
+  }
+}
+
+/* === No scrolling while Under-Construction is ON === */
+body.maintenance {
+  overflow: hidden;
+  /* stop page scroll */
+}
+
+body.maintenance main {
+  padding: 0;
+  /* remove main's default 32/48px padding */
+}
+
+body.maintenance .maintenance-screen {
+  min-height: 100dvh;
+  /* exactly one viewport tall */
+  padding: 0;
+  /* no extra vertical space */
+  display: grid;
+  place-items: center;
+  /* keep the card centered */
+}
+
+/* (optional) keep the card off the edges on small screens */
+body.maintenance .maintenance-card {
+  margin: 0 16px;
+}
+
+/* ==== Unify phone header & hamburger drawer styles (place at END) ==== */
+
+/* 1) One source of truth for header height */
+.drawer .drawer-header { height: var(--header-h) !important; padding: 0 20px; }
+.header-inner           { height: var(--header-h); }
+
+/* 2) Make background/border identical */
+.drawer     { background: var(--neutral-layer-1); }
+
+/* 3) Shared nav link tokens (phone + drawer) */
+:root, fluent-design-system-provider {
+  --nav-link-color: var(--neutral-foreground-rest);
+  --nav-link-hover: var(--accent-foreground-rest);
+  --nav-link-active: var(--accent-foreground-rest);
+  --nav-weight: 500;
+}
+
+.nav-list a,
+.nav-list .link-like,
+.drawer-links a,
+.drawer-links .link-like {
+  color: var(--nav-link-color);
+  font-weight: var(--nav-weight);
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+@media (hover:hover){
+  .nav-list a:hover,
+  .nav-list .link-like:hover,
+  .drawer-links a:hover,
+  .drawer-links .link-like:hover {
+    color: var(--nav-link-hover) !important;
+  }
+}
+
+.nav-list a[aria-current="page"],
+.drawer-links a[aria-current="page"] {
+  color: var(--nav-link-active) !important;
+}
+
+/* 4) Icon sizes and tap targets stay consistent */
+.icon-btn { min-width: 44px; min-height: 44px; }
+.icon-btn svg { width: clamp(24px, calc(var(--header-h) * 0.5), 44px); height: auto; }
+
+/* 5) Drawer link layout – same rhythm as desktop spacing */
+.drawer-links {
+  gap: 28px;                 /* matches your mobile rhythm */
+  padding: 24px 16px calc(env(safe-area-inset-bottom, 0) + 24px);
+}
+
+
+/* === FIX: perfectly center the hamburger/X and keep position identical === */
+.header-inner { align-items: center; }              /* safety */
+
+.icon-btn{
+  /* kill UA padding/line-height & make a centering box */
+  padding: 0 !important;
+  line-height: 0 !important;
+  display: grid !important;
+  place-items: center !important;
+
+  /* same hit area in header + drawer */
+  height: var(--header-h) !important;
+  min-width: 44px !important;
+  background: transparent !important;
+  border: 0 !important;
+  margin: 0 !important;
+}
+
+/* make the drawer header use the same height & centering */
+.drawer .drawer-header{
+  height: var(--header-h) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+/* logo row stays centered in both places */
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-mark { display:block; }
+
+/* Desktop: show full nav, hide hamburger */
+@media (min-width: 1025px) {
+  #menuBtn { display: none !important; }     /* wins over .icon-btn */
+  .nav-list { display: flex !important; align-items: center; gap: 40px; }
+}
+
+/* Mobile/Tablet: show hamburger, hide full nav */
+@media (max-width: 1024px) {
+  #menuBtn { display: inline-grid; place-items: center; justify-content: flex-end; } /* matches centering */
+  .nav-list { display: none !important; }
+}
+
+.icon-btn { display: grid !important; justify-content: flex-end; /* ... */ }
+
+/* Keep icons perfectly centered & remove baseline quirks */
+.icon-btn{
+  display: grid;
+  place-items: center;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  min-width: 44px;
+  min-height: 44px; /* a11y tap target */
+}
+.icon-btn > svg{ display:block; } /* no inline baseline shift */
+
+
+@media (min-width:1025px){
+  #menuBtn { display:none !important; }
+}
+
+/* Make the Senifone link use Fluent accent tokens */
+.senifone { 
+  color: var(--accent-foreground-rest);
+  font-weight: 600;
+}
+.senifone:hover { color: var(--accent-foreground-hover); }
+
+/* Give content inside <fluent-card> the same inner padding as your .card */
+fluent-card .body {
+  padding: calc(var(--design-unit, 4) * 4 * 1px); /* 16px */
+}
+
+/* Hero uses type-ramp-plus-4 — make it exactly 37px */
+fluent-design-system-provider {
+  --type-ramp-plus-4-font-size: 37px;
+  --type-ramp-plus-4-line-height: 44px; /* ~1.19 for clean rhythm */
+}
+
+
+.hero .title{
+  font-size: 37px;
+  line-height: 44px;
+  font-weight: 600;
+}
+@media (max-width:640px){
+  .hero .title{ font-size: 32px; line-height: 40px; }
+}
+
+/* Bigger, Fluent-y buttons (medium+) */
+fluent-design-system-provider#fluentTheme {
+  --control-height: 44px;          /* button height */
+  --control-corner-radius: 8px;     /* Fluent 2 corners */
+  --design-unit: 4;                 /* spacing base (default) */
+}
+
+/* tidy alignment in your CTA row */
+.cta-row { gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* nudges outline to accent without fighting the component */
+.accent-outline {
+  --neutral-foreground-rest: var(--accent-foreground-rest);
+  --neutral-stroke-rest: var(--accent-stroke-control-rest);
+  --neutral-foreground-hover: var(--accent-foreground-hover);
+  --neutral-stroke-hover: var(--accent-stroke-control-hover);
+}
+
+/* In your provider */
+#fluentTheme {
+  --control-height: 40px;          /* desktop/tablet */
+  --control-corner-radius: 8px;     /* Fluent 2 corners */
+}
+
+/* Mobile can be a touch smaller if you want */
+@media (max-width:640px){
+  #fluentTheme { --control-height: 36px; }
+}
+
+/* Row spacing only */
+.cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+
+/* ===== Fluent Section System ===== */
+
+/* Use Fluent design-unit for vertical rhythm */
+fluent-design-system-provider {
+  --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* ≈64px desktop */
+}
+@media (max-width:1024px){
+  fluent-design-system-provider { --section-y: calc(var(--design-unit,4) * 12 * 1px); } /* ≈48px */
+}
+
+/* Base section */
+.section {
+  padding-block: var(--section-y);
+}
+
+/* Variants */
+.section--tight   { padding-block: calc(var(--section-y) / 2); }
+.section--loose   { padding-block: calc(var(--section-y) * 1.5); }
+.section--alt     { background: var(--neutral-layer-2); }    /* subtle banded background */
+.section--surface { background: var(--neutral-layer-1); }    /* card-like surface */
+
+/* Head styles (match Fluent type ramp) */
+.section .eyebrow {
+  color: var(--neutral-foreground-hint);
+  font-size: var(--type-ramp-minus-1-font-size);
+  line-height: var(--type-ramp-minus-1-line-height);
+  font-weight: 600;
+  letter-spacing: .02em;
+  margin: 0 0 8px 0;
+}
+
+.section > h2,
+.section .h2 {
+  font-size: var(--type-ramp-plus-2-font-size);
+  line-height: var(--type-ramp-plus-2-line-height);
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+/* Optional subhead */
+.section .subhead {
+  color: var(--neutral-foreground-hint);
+  margin: 0 0 20px 0;
+  font-size: var(--type-ramp-base-font-size);
+  line-height: var(--type-ramp-base-line-height);
+}
+
+/* Section divider (Fluent component) */
+fluent-divider.section-div {
+  display: block;
+  margin-block: calc(var(--section-y) / 2);
+}
+fluent-divider.section-div::part(divider) {
+  border-color: var(--neutral-stroke-rest);
+  opacity: .9;
+}
+
+/* Full-bleed divider if you want it to span edge-to-edge */
+.section-div.bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+
