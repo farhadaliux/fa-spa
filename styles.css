@@ -1460,6 +1460,33 @@ body.maintenance .maintenance-screen::before {
   }
 }
 
+/* surfaces */
+body        { background: var(--neutral-layer-1, #fff);
+              color: var(--neutral-foreground-rest, #111); }
+
+.site-footer{ background: var(--neutral-layer-2, #f5f5f5);
+              border-top:1px solid var(--neutral-stroke-rest, #E1DFDD); }
+
+/* links */
+a { color: var(--accent-foreground-rest, #0F6CBD); }
+
+/* buttons (your custom .btn) */
+.btn{
+  padding:10px 12px;
+  border-radius: var(--control-corner-radius, 8px);
+  background: var(--accent-fill-rest, #0F6CBD);
+  border:1px solid var(--accent-stroke-control-rest, #0F6CBD);
+  color: var(--neutral-foreground-on-accent-rest, #fff);
+}
+.btn:hover  { background: var(--accent-fill-hover, #0e61ab);
+              border-color: var(--accent-stroke-control-hover, #0e61ab); }
+.btn.ghost  { background: transparent;
+              color: var(--accent-foreground-rest, #0F6CBD);
+              border-color: var(--accent-stroke-control-rest, #0F6CBD); }
+
+
+/* ensure it doesn’t change layout and covers the page */
+fluent-design-system-provider { display:block; width:100%; }
 
 .breadcrumbs {
   font-size: 14px;

@@ -17,28 +17,29 @@
   </script>
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css" />
-<!-- Fluent UI Web Components (pinned) -->
-<script
-  type="module"
-  defer
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-  src="https://cdn.jsdelivr.net/npm/@fluentui/web-components@2/dist/web-components.min.js">
-</script>
+  <link rel="stylesheet" href="styles.css?v=20250815" />
 
+  <!-- Fluent UI Web Components (pinned version) -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@fluentui/web-components@2/dist/web-components.min.js"></script>
 
   <link rel="icon" href="img/placeholders/favicon.svg" type="image/svg+xml" />
 </head>
 
+<script>
+  customElements.whenDefined('fluent-design-system-provider').then(() => {
+    document.documentElement.classList.remove('pre-maint'); // if you still use it
+    document.body.setAttribute('data-fluent-ready','');
+  });
+</script>
 
 <body>
-  <fluent-design-system-provider id="fluentTheme" accent-base-color="#0F6CBD" style="display:contents">
+  <fluent-design-system-provider id="fluentTheme" accent-base-color="#0F6CBD">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="app-header" role="banner">
       <!-- top loading progress bar -->
       <div id="loading-bar" aria-hidden="true"></div>
       <div class="container header-inner">
-        <a href="#/" class="logo" aria-label="Farhad Ali — Home">
+        <a href="/" class="logo" aria-label="Farhad Ali — Home">
           <img src="img/placeholders/favicon.svg" class="logo-mark" alt="" aria-hidden="true">
           <span class="logo-text">Farhad&nbsp;Ali</span>
         </a>
@@ -51,7 +52,7 @@
             </svg>
           </button>
           <ul class="nav-list">
-            <li><a data-link href="#/">Home</a></li>
+            <li><a data-link href="/">Home</a></li>
             <li><a data-link href="#/work">Work</a></li>
             <li><a data-link href="#/research">Research</a></li>
             <li><a data-link href="#/about">About</a></li>
