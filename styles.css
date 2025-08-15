@@ -328,13 +328,13 @@ body {
 
 /* Header height driven by Fluent design unit (4px by default) */
 fluent-design-system-provider {
-  --header-h: calc(var(--design-unit, 4) * 18 * 1px);
+  --header-h: calc(var(--design-unit, 4) * 16 * 1px);
   /* 64px desktop/tablet */
 }
 
 @media (max-width: 640px) {
   fluent-design-system-provider {
-    --header-h: calc(var(--design-unit, 4) * 18 * 1px);
+    --header-h: calc(var(--design-unit, 4) * 16 * 1px);
     /* 56px mobile */
   }
 }
@@ -1784,21 +1784,6 @@ fluent-design-system-provider {
   /* ... */
 }
 
-/* Keep icons perfectly centered & remove baseline quirks */
-.icon-btn {
-  display: grid;
-  place-items: center;
-  padding: 0;
-  margin: 0;
-  line-height: 0;
-  min-width: 44px;
-  min-height: 44px;
-  /* a11y tap target */
-}
-
-.icon-btn>svg {
-  display: block;
-}
 
 /* no inline baseline shift */
 
