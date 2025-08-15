@@ -14,18 +14,25 @@ fluent-design-system-provider {
   --brand-on: var(--neutral-foreground-rest);
 
   /* Spacing via Fluent design unit */
-  --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* desktop ~64px */
+  --section-y: calc(var(--design-unit, 4) * 16 * 1px);
+  /* desktop ~64px */
 }
 
-@media (max-width:1024px){
+@media (max-width:1024px) {
   fluent-design-system-provider {
-    --section-y: calc(var(--design-unit, 4) * 12 * 1px); /* tablet/mobile ~48px */
+    --section-y: calc(var(--design-unit, 4) * 12 * 1px);
+    /* tablet/mobile ~48px */
   }
 }
 
 /* Links (Fluent accent) */
-a { color: var(--accent-foreground-rest); }
-a:hover { color: var(--accent-foreground-hover); }
+a {
+  color: var(--accent-foreground-rest);
+}
+
+a:hover {
+  color: var(--accent-foreground-hover);
+}
 
 /* Focus (Fluent-ish) */
 :focus-visible {
@@ -34,7 +41,8 @@ a:hover { color: var(--accent-foreground-hover); }
 }
 
 /* Use Fluent corner + stroke everywhere */
-:root, fluent-design-system-provider {
+:root,
+fluent-design-system-provider {
   --radius-s: calc(var(--control-corner-radius, 8px) * .5);
   --radius-m: var(--control-corner-radius, 8px);
   --radius-l: calc(var(--control-corner-radius, 8px) * 1.5);
@@ -48,21 +56,45 @@ a:hover { color: var(--accent-foreground-hover); }
   background: var(--accent-fill-rest);
   color: var(--neutral-foreground-on-accent-rest);
 }
-.btn:hover   { background: var(--accent-fill-hover);   border-color: var(--accent-stroke-control-hover); }
-.btn:active  { background: var(--accent-fill-active);  border-color: var(--accent-stroke-control-active); }
-.btn.ghost   { background: transparent; color: var(--accent-foreground-rest); border-color: var(--accent-stroke-control-rest); }
-.btn.ghost:hover { background: var(--neutral-layer-2); }
+
+.btn:hover {
+  background: var(--accent-fill-hover);
+  border-color: var(--accent-stroke-control-hover);
+}
+
+.btn:active {
+  background: var(--accent-fill-active);
+  border-color: var(--accent-stroke-control-active);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--accent-foreground-rest);
+  border-color: var(--accent-stroke-control-rest);
+}
+
+.btn.ghost:hover {
+  background: var(--neutral-layer-2);
+}
 
 /* Cards look Fluent */
-.card, fluent-card {
+.card,
+fluent-card {
   background: var(--neutral-layer-1);
   border: 1px solid var(--neutral-stroke-rest);
   border-radius: var(--radius-m);
-  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 2px 6px rgba(0,0,0,.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 2px 6px rgba(0, 0, 0, .04);
 }
 
-body        { background: var(--neutral-layer-1); color: var(--neutral-foreground-rest); }
-.site-footer{ background: var(--neutral-layer-2); border-top: 1px solid var(--neutral-stroke-rest); }
+body {
+  background: var(--neutral-layer-1);
+  color: var(--neutral-foreground-rest);
+}
+
+.site-footer {
+  background: var(--neutral-layer-2);
+  border-top: 1px solid var(--neutral-stroke-rest);
+}
 
 
 /* Type ramp for hero/title using Fluent tokens */
@@ -71,6 +103,7 @@ body        { background: var(--neutral-layer-1); color: var(--neutral-foregroun
   line-height: var(--type-ramp-plus-4-line-height);
   font-weight: 600;
 }
+
 .section h2 {
   font-size: var(--type-ramp-plus-2-font-size);
   line-height: var(--type-ramp-plus-2-line-height);
@@ -93,6 +126,7 @@ fluent-design-system-provider {
   --brand-primary: var(--accent-fill-rest);
   --stroke: var(--neutral-stroke-rest);
 }
+
 /* Scope my site tokens to Fluent's provider (theme container) */
 fluent-design-system-provider {
   /* bridge to Fluent tokens */
@@ -102,18 +136,22 @@ fluent-design-system-provider {
   --stroke: var(--neutral-stroke-rest);
 
   /* Section spacing driven by Fluent's design unit (4px default) */
-  --section-y: calc(var(--design-unit, 4) * 12 * 1px); /* 48px mobile/tablet */
+  --section-y: calc(var(--design-unit, 4) * 12 * 1px);
+  /* 48px mobile/tablet */
 }
 
 /* Desktop: a touch roomier */
 @media (min-width: 1025px) {
   fluent-design-system-provider {
-    --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* 64px desktop */
+    --section-y: calc(var(--design-unit, 4) * 16 * 1px);
+    /* 64px desktop */
   }
 }
 
 /* Use the variable everywhere */
-.section { padding-block: var(--section-y); }
+.section {
+  padding-block: var(--section-y);
+}
 
 /* Optional: make hero follow the same rhythm */
 .hero {
@@ -248,25 +286,37 @@ body {
 
 /* Header height driven by Fluent design unit (4px by default) */
 fluent-design-system-provider {
-  --header-h: calc(var(--design-unit, 4) * 18 * 1px); /* 64px desktop/tablet */
+  --header-h: calc(var(--design-unit, 4) * 18 * 1px);
+  /* 64px desktop/tablet */
 }
 
 @media (max-width: 640px) {
   fluent-design-system-provider {
-    --header-h: calc(var(--design-unit, 4) * 18 * 1px); /* 56px mobile */
+    --header-h: calc(var(--design-unit, 4) * 18 * 1px);
+    /* 56px mobile */
   }
 }
 
 /* Apply it */
-.header-inner { height: var(--header-h); }
-.drawer .drawer-header { height: var(--header-h) !important; }
+.header-inner {
+  height: var(--header-h);
+}
+
+.drawer .drawer-header {
+  height: var(--header-h) !important;
+}
 
 /* Keep the logo and icon sizing proportional */
-.logo-mark { width: clamp(24px, calc(var(--header-h) * 0.45), 32px);  }
+.logo-mark {
+  width: clamp(24px, calc(var(--header-h) * 0.45), 32px);
+}
 
 
 /* Ensure tap targets meet 44px minimum */
-.icon-btn { min-height: 44px; min-width: 44px; }
+.icon-btn {
+  min-height: 44px;
+  min-width: 44px;
+}
 
 
 /* Skip link */
@@ -540,7 +590,7 @@ main {
 
 }
 
-.senifone{
+.senifone {
   color: #1a73e8;
   font-weight: 600;
 }
@@ -600,10 +650,10 @@ main {
 
 @media (max-width:640px) {
   .hero .title {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1.4;
-}
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
 
   .nav-list {
     display: none;
@@ -1006,8 +1056,15 @@ body.maintenance .maintenance-screen::before {
 }
 
 
-.center { display: grid; place-items: center; }
-.push-right { display: grid; justify-content: end; }
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.push-right {
+  display: grid;
+  justify-content: end;
+}
 
 
 .muted {
@@ -1200,7 +1257,11 @@ body.maintenance .maintenance-screen::before {
   /* keep content above iOS home indicator */
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
-.breadcrumbs .sep { opacity: .6; }
+
+.breadcrumbs .sep {
+  opacity: .6;
+}
+
 /* Keep the dim, but don't let backdrop eat taps */
 .drawer::backdrop {
   background: rgba(0, 0, 0, .35);
@@ -1460,16 +1521,17 @@ body.maintenance .maintenance-screen {
   background: rgba(255, 255, 255, .85);
   backdrop-filter: blur(4px);
 }
-.maintenance-card h1{
- color: #111111;
- line-height: 1.3;
- font-size: 48px;
- font-weight: 700;
+
+.maintenance-card h1 {
+  color: #111111;
+  line-height: 1.3;
+  font-size: 48px;
+  font-weight: 700;
 }
 
-.maintenance-card .mono{
- color: #111111;
- font-size: 14px;
+.maintenance-card .mono {
+  color: #111111;
+  font-size: 14px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1508,14 +1570,23 @@ body.maintenance .maintenance-card {
 /* ==== Unify phone header & hamburger drawer styles (place at END) ==== */
 
 /* 1) One source of truth for header height */
-.drawer .drawer-header { height: var(--header-h) !important; padding: 0 20px; }
-.header-inner           { height: var(--header-h); }
+.drawer .drawer-header {
+  height: var(--header-h) !important;
+  padding: 0 20px;
+}
+
+.header-inner {
+  height: var(--header-h);
+}
 
 /* 2) Make background/border identical */
-.drawer     { background: var(--neutral-layer-1); }
+.drawer {
+  background: var(--neutral-layer-1);
+}
 
 /* 3) Shared nav link tokens (phone + drawer) */
-:root, fluent-design-system-provider {
+:root,
+fluent-design-system-provider {
   --nav-link-color: var(--neutral-foreground-rest);
   --nav-link-hover: var(--accent-foreground-rest);
   --nav-link-active: var(--accent-foreground-rest);
@@ -1532,7 +1603,8 @@ body.maintenance .maintenance-card {
   text-underline-offset: 4px;
 }
 
-@media (hover:hover){
+@media (hover:hover) {
+
   .nav-list a:hover,
   .nav-list .link-like:hover,
   .drawer-links a:hover,
@@ -1547,20 +1619,32 @@ body.maintenance .maintenance-card {
 }
 
 /* 4) Icon sizes and tap targets stay consistent */
-.icon-btn { min-width: 44px; min-height: 44px; }
-.icon-btn svg { width: clamp(24px, calc(var(--header-h) * 0.5), 44px); height: auto; }
+.icon-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.icon-btn svg {
+  width: clamp(24px, calc(var(--header-h) * 0.5), 44px);
+  height: auto;
+}
 
 /* 5) Drawer link layout – same rhythm as desktop spacing */
 .drawer-links {
-  gap: 28px;                 /* matches your mobile rhythm */
+  gap: 28px;
+  /* matches your mobile rhythm */
   padding: 24px 16px calc(env(safe-area-inset-bottom, 0) + 24px);
 }
 
 
 /* === FIX: perfectly center the hamburger/X and keep position identical === */
-.header-inner { align-items: center; }              /* safety */
+.header-inner {
+  align-items: center;
+}
 
-.icon-btn{
+/* safety */
+
+.icon-btn {
   /* kill UA padding/line-height & make a centering box */
   padding: 0 !important;
   line-height: 0 !important;
@@ -1576,7 +1660,7 @@ body.maintenance .maintenance-card {
 }
 
 /* make the drawer header use the same height & centering */
-.drawer .drawer-header{
+.drawer .drawer-header {
   height: var(--header-h) !important;
   display: flex;
   align-items: center;
@@ -1585,77 +1669,128 @@ body.maintenance .maintenance-card {
 }
 
 /* logo row stays centered in both places */
-.logo { display:flex; align-items:center; gap:10px; }
-.logo-mark { display:block; }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  display: block;
+}
 
 /* Desktop: show full nav, hide hamburger */
 @media (min-width: 1025px) {
-  #menuBtn { display: none !important; }     /* wins over .icon-btn */
-  .nav-list { display: flex !important; align-items: center; gap: 40px; }
+  #menuBtn {
+    display: none !important;
+  }
+
+  /* wins over .icon-btn */
+  .nav-list {
+    display: flex !important;
+    align-items: center;
+    gap: 40px;
+  }
 }
 
 /* Mobile/Tablet: show hamburger, hide full nav */
 @media (max-width: 1024px) {
-  #menuBtn { display: inline-grid; place-items: center; justify-content: flex-end; } /* matches centering */
-  .nav-list { display: none !important; }
+  #menuBtn {
+    display: inline-grid;
+    place-items: center;
+    justify-content: flex-end;
+  }
+
+  /* matches centering */
+  .nav-list {
+    display: none !important;
+  }
 }
 
-.icon-btn { display: grid !important; justify-content: flex-end; /* ... */ }
+.icon-btn {
+  display: grid !important;
+  justify-content: flex-end;
+  /* ... */
+}
 
 /* Keep icons perfectly centered & remove baseline quirks */
-.icon-btn{
+.icon-btn {
   display: grid;
   place-items: center;
   padding: 0;
   margin: 0;
   line-height: 0;
   min-width: 44px;
-  min-height: 44px; /* a11y tap target */
+  min-height: 44px;
+  /* a11y tap target */
 }
-.icon-btn > svg{ display:block; } /* no inline baseline shift */
+
+.icon-btn>svg {
+  display: block;
+}
+
+/* no inline baseline shift */
 
 
-@media (min-width:1025px){
-  #menuBtn { display:none !important; }
+@media (min-width:1025px) {
+  #menuBtn {
+    display: none !important;
+  }
 }
 
 /* Make the Senifone link use Fluent accent tokens */
-.senifone { 
+.senifone {
   color: var(--accent-foreground-rest);
   font-weight: 600;
 }
-.senifone:hover { color: var(--accent-foreground-hover); }
+
+.senifone:hover {
+  color: var(--accent-foreground-hover);
+}
 
 /* Give content inside <fluent-card> the same inner padding as your .card */
 fluent-card .body {
-  padding: calc(var(--design-unit, 4) * 4 * 1px); /* 16px */
+  padding: calc(var(--design-unit, 4) * 4 * 1px);
+  /* 16px */
 }
 
 /* Hero uses type-ramp-plus-4 — make it exactly 37px */
 fluent-design-system-provider {
   --type-ramp-plus-4-font-size: 37px;
-  --type-ramp-plus-4-line-height: 44px; /* ~1.19 for clean rhythm */
+  --type-ramp-plus-4-line-height: 44px;
+  /* ~1.19 for clean rhythm */
 }
 
 
-.hero .title{
+.hero .title {
   font-size: 37px;
   line-height: 44px;
   font-weight: 600;
 }
-@media (max-width:640px){
-  .hero .title{ font-size: 32px; line-height: 40px; }
+
+@media (max-width:640px) {
+  .hero .title {
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
 
 /* Bigger, Fluent-y buttons (medium+) */
 fluent-design-system-provider#fluentTheme {
-  --control-height: 44px;          /* button height */
-  --control-corner-radius: 8px;     /* Fluent 2 corners */
-  --design-unit: 4;                 /* spacing base (default) */
+  --control-height: 44px;
+  /* button height */
+  --control-corner-radius: 8px;
+  /* Fluent 2 corners */
+  --design-unit: 4;
+  /* spacing base (default) */
 }
 
 /* tidy alignment in your CTA row */
-.cta-row { gap: 12px; flex-wrap: wrap; align-items: center; }
+.cta-row {
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
 /* nudges outline to accent without fighting the component */
 .accent-outline {
@@ -1667,26 +1802,41 @@ fluent-design-system-provider#fluentTheme {
 
 /* In your provider */
 #fluentTheme {
-  --control-height: 40px;          /* desktop/tablet */
-  --control-corner-radius: 8px;     /* Fluent 2 corners */
+  --control-height: 40px;
+  /* desktop/tablet */
+  --control-corner-radius: 8px;
+  /* Fluent 2 corners */
 }
 
 /* Mobile can be a touch smaller if you want */
-@media (max-width:640px){
-  #fluentTheme { --control-height: 36px; }
+@media (max-width:640px) {
+  #fluentTheme {
+    --control-height: 36px;
+  }
 }
 
 /* Row spacing only */
-.cta-row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
 /* ===== Fluent Section System ===== */
 
 /* Use Fluent design-unit for vertical rhythm */
 fluent-design-system-provider {
-  --section-y: calc(var(--design-unit, 4) * 16 * 1px); /* ≈64px desktop */
+  --section-y: calc(var(--design-unit, 4) * 16 * 1px);
+  /* ≈64px desktop */
 }
-@media (max-width:1024px){
-  fluent-design-system-provider { --section-y: calc(var(--design-unit,4) * 12 * 1px); } /* ≈48px */
+
+@media (max-width:1024px) {
+  fluent-design-system-provider {
+    --section-y: calc(var(--design-unit, 4) * 12 * 1px);
+  }
+
+  /* ≈48px */
 }
 
 /* Base section */
@@ -1695,10 +1845,24 @@ fluent-design-system-provider {
 }
 
 /* Variants */
-.section--tight   { padding-block: calc(var(--section-y) / 2); }
-.section--loose   { padding-block: calc(var(--section-y) * 1.5); }
-.section--alt     { background: var(--neutral-layer-2); }    /* subtle banded background */
-.section--surface { background: var(--neutral-layer-1); }    /* card-like surface */
+.section--tight {
+  padding-block: calc(var(--section-y) / 2);
+}
+
+.section--loose {
+  padding-block: calc(var(--section-y) * 1.5);
+}
+
+.section--alt {
+  background: var(--neutral-layer-2);
+}
+
+/* subtle banded background */
+.section--surface {
+  background: var(--neutral-layer-1);
+}
+
+/* card-like surface */
 
 /* Head styles (match Fluent type ramp) */
 .section .eyebrow {
@@ -1710,7 +1874,7 @@ fluent-design-system-provider {
   margin: 0 0 8px 0;
 }
 
-.section > h2,
+.section>h2,
 .section .h2 {
   font-size: var(--type-ramp-plus-2-font-size);
   line-height: var(--type-ramp-plus-2-line-height);
@@ -1731,6 +1895,7 @@ fluent-divider.section-div {
   display: block;
   margin-block: calc(var(--section-y) / 2);
 }
+
 fluent-divider.section-div::part(divider) {
   border-color: var(--neutral-stroke-rest);
   opacity: .9;
@@ -1741,5 +1906,3 @@ fluent-divider.section-div::part(divider) {
   width: 100vw;
   margin-left: calc(50% - 50vw);
 }
-
-
