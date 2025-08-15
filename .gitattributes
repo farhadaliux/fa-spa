@@ -1,0 +1,8 @@
+# normalize text files to LF in repo, convert to CRLF on Windows checkout
+* text=auto
+
+# enforce LF for web assets (prevents CSP hash surprises later)
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.json text eol=lf
