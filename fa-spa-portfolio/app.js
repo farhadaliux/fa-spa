@@ -376,8 +376,8 @@ function renderHome(container) {
 
         <div class="cta-row">
         
-          <fluent-anchor appearance="accent" href="#/work">SeeCase Studies</fluent-anchor>
-          <fluent-anchor appearance="outline" href="#/research">See Research</fluent-anchor>
+          <fluent-button appearance="accent" href="#/work">See Case Studies</fluent-button>
+          <fluent-button appearance="outline" href="#/research">See Research</fluent-button>
         </div>
       </div>
 
@@ -414,7 +414,7 @@ function renderHome(container) {
         <h2>Need a researcher who designs?</h2>
         <div class="cta-row">
 
-          <fluent-anchor appearance="accent" href="#/work">See projects</fluent-anchor>
+          <fluent-button appearance="accent" href="#/work">See projects</fluent-button>
           <fluent-button appearance="outline" id="ctaContact2">Contact Me</fluent-button>
           
           
