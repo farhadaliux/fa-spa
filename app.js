@@ -376,7 +376,7 @@ function renderHome(container) {
 
         <div class="cta-row">
         
-          <fluent-anchor appearance="accent" href="#/work">SeeCase Studies</fluent-anchor>
+          <fluent-anchor appearance="accent" href="#/work">See Case Studies</fluent-anchor>
           <fluent-anchor appearance="outline" href="#/research">See Research</fluent-anchor>
         </div>
       </div>
@@ -602,7 +602,7 @@ function renderAbout(container) {
           <p>Skills & Tools: Interviews, usability testing, heuristic evals, IA/Taxonomy, Figma, WCAG 2.1 AA, e‑commerce trust.</p>
           <p><a href="files/placeholders/resume.pdf" download>Download resume (PDF)</a></p>
         </div>
-        <div class="center" aria-hidden="true"><img src="img/placeholders/portrait.svg" alt=""></div>
+        <div class="center" aria-hidden="true"><img src="img/placeholders/portrait.png" alt=""></div>
       </div>
     </section>
   `;
