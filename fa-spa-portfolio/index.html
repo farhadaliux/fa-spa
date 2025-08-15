@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,11 +16,15 @@
   </script>
   <link rel="preload" href="styles.css" as="style">
   <link rel="stylesheet" href="styles.css" />
+
+<!-- Fluent UI Web Components (pinned version) -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@fluentui/web-components@2/dist/web-components.min.js"></script>
   <link rel="icon" href="img/placeholders/favicon.svg" type="image/svg+xml" />
 </head>
 
 
 <body>
+    <fluent-design-system-provider id="fluentTheme" accent-base-color="#0F6CBD" style="display:contents"> 
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="app-header" role="banner">
     <!-- top loading progress bar -->
@@ -137,6 +140,8 @@
   </dialog>
 
   <script src="app.js" defer></script>
+ </fluent-design-system-provider>
+
 </body>
 
 </html>

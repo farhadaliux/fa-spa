@@ -366,7 +366,7 @@ function renderHome(container) {
   container.innerHTML = `
     <section class="hero">
       <div>
-        <h1 class="title">I’m Farhad, a Product Designer. I enjoy creating research-led, human-centered digital experiences.</h1>
+        <h1 class="title">I’m Farhad, a Product Designer. Who enjoy creating research-led, human-centered digital experiences.</h1>
         <p class="sub">Currently Lead Product Designer at <a class="senifone" href="#" target="_blank" rel="noopener">Senifone</a></p>
       </div>
       <div aria-hidden="true" class="center">
@@ -402,8 +402,11 @@ function renderHome(container) {
       <div>
         <h2>Need a researcher who designs?</h2>
         <div class="cta-row">
-          <a class="btn" href="#/work">See projects</a>
-          <button class="btn ghost" id="ctaContact2">Contact Me</button>
+
+          <fluent-anchor appearance="accent" href="#/work">See projects</fluent-anchor>
+          <fluent-button appearance="outline" id="ctaContact2">Contact Me</fluent-button>
+          
+          
         </div>
       </div>
     </section>
@@ -417,12 +420,13 @@ function renderHome(container) {
 function cardMini(title, i) {
   const icon = ["🔎", "🛡️", "♿"][i % 3];
   return `
-    <article class="card">
-      <div class="body">
-        <h3>${icon} ${title}</h3>
+  <fluent-card class="card">
+  <div class="body">
+            <h3>${icon} ${title}</h3>
         <p class="meta">Deep links to relevant case studies</p>
-      </div>
-    </article>
+  </div>
+</fluent-card>
+
   `;
 }
 
