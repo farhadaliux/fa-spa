@@ -367,7 +367,7 @@ function renderHome(container) {
     <section class="hero section" aria-labelledby="home-hero">
       <div>
         <h1 id="home-hero" class="title">
-          I’m Farhad, a Product Designer. I enjoy creating research-led, human-centered digital experiences.
+          I’m Farhad, a Product Designer. Who enjoy creating research-led, human-centered digital experiences.
         </h1>
         <p class="sub">
           Currently Lead Product Designer at
