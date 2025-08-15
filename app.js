@@ -593,7 +593,7 @@ function renderResearchDetail(container, slug) {
 }
 
 function renderAbout(container) {
-  container.innerHTML = `
+  container.innerHTML = ` 
     <section class="section">
       <h1 class="title">About</h1>
       <div class="grid cols-2">
