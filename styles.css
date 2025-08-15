@@ -1,3 +1,53 @@
+
+/* --- Fluent token fallbacks (when CDN fails) --- */
+:root{
+  /* minimal palette */
+  --neutral-layer-1:#ffffff;
+  --neutral-layer-2:#f5f5f5;
+  --neutral-layer-3:#f3f2f1;
+  --neutral-stroke-rest:#e1dfdd;
+  --neutral-foreground-rest:#111111;
+  --neutral-foreground-hint:#5e5e5e;
+
+  --accent-fill-rest:#0F6CBD;
+  --accent-fill-hover:#115ea3;
+  --accent-fill-active:#0f548c;
+  --accent-foreground-rest:#0F6CBD;
+  --neutral-foreground-on-accent-rest:#ffffff;
+
+  --focus-stroke-outer:#0F6CBD;
+  --control-corner-radius:8px;
+  --design-unit:4;
+}
+
+/* Your site tokens with safe defaults (these get overridden by the Fluent provider when it loads) */
+:root{
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --bg-subtle:#f5f5f5;
+  --surface-alt:#f3f2f1;
+  --fg-primary:#111111;
+  --fg-secondary:#5e5e5e;
+  --stroke:#e1dfdd;
+  --brand-primary:#0F6CBD;
+  --brand-on:#ffffff;
+}
+
+/* Map site tokens to Fluent tokens INSIDE the provider (when Fluent is available) */
+fluent-design-system-provider{
+  --bg: var(--neutral-layer-1);
+  --surface: var(--neutral-layer-1);
+  --bg-subtle: var(--neutral-layer-2);
+  --surface-alt: var(--neutral-layer-3);
+  --fg-primary: var(--neutral-foreground-rest);
+  --fg-secondary: var(--neutral-foreground-hint);
+  --stroke: var(--neutral-stroke-rest);
+  --brand-primary: var(--accent-fill-rest);
+  --brand-on: var(--neutral-foreground-on-accent-rest);
+}
+
+
+
 /* === Fluent bridge (paste at TOP of styles.css) === */
 fluent-design-system-provider {
   /* Surfaces & text */
@@ -86,15 +136,7 @@ fluent-card {
   box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 2px 6px rgba(0, 0, 0, .04);
 }
 
-body {
-  background: var(--neutral-layer-1);
-  color: var(--neutral-foreground-rest);
-}
 
-.site-footer {
-  background: var(--neutral-layer-2);
-  border-top: 1px solid var(--neutral-stroke-rest);
-}
 
 
 /* Type ramp for hero/title using Fluent tokens */
@@ -1449,7 +1491,9 @@ body.maintenance .maintenance-screen::before {
   vertical-align: bottom;
 }
 
-
+/* AFTER (safe with or without Fluent) */
+body        { background: var(--bg);       color: var(--fg-primary); }
+.site-footer{ background: var(--bg-subtle);border-top:    1px solid var(--stroke); }
 
 /* ===== Maintenance Mode ===== */
 body.maintenance .app-header,
