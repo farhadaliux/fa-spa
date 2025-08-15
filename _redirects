@@ -1,1 +1,17 @@
-/*    /index.html    200
+# ====== Security/forbidden routes (return 410 Gone or 404) ======
+/wp-admin/*            /410.html   410
+/wp-login.php          /410.html   410
+/*.php                  /404.html   404
+/.env                  /404.html   404
+/.git*                 /404.html   404
+/vendor/*              /404.html   404
+/node_modules/*        /404.html   404
+/package.json          /404.html   404
+/composer.*            /404.html   404
+/api/*                 /404.html   404
+
+# Private area (encourage Cloudflare Access instead)
+/work/private/*        /403.html   404
+
+# ====== Normal SPA routing ======
+/*    /index.html   200
