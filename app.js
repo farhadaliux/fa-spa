@@ -1,11 +1,11 @@
 /* SPA Router & Renderers (Vanilla JS) */
 const routes = {
-  "/": renderHome,
-  "/work": renderWorkIndex,
-  "/work/:slug": renderWorkDetail,
-  "/research": renderResearchIndex,
-  "/research/:slug": renderResearchDetail,
-  "/about": renderAbout
+  "#/": renderHome,
+  "#/work": renderWorkIndex,
+  "#/work/:slug": renderWorkDetail,
+  "#/research": renderResearchIndex,
+  "#/research/:slug": renderResearchDetail,
+  "#/about": renderAbout
 };
 
 let works = [];
@@ -362,6 +362,8 @@ function setActive() {
 
 
 /* ---------- Renderers ---------- */
+
+
 function renderHome(container) {
   container.innerHTML = `
     <section class="hero section" aria-labelledby="home-hero">
@@ -427,6 +429,13 @@ function renderHome(container) {
   const c2 = document.getElementById("ctaContact2");
   const modal = document.getElementById("contactModal");
   [c1, c2].forEach(el => el && el.addEventListener("click", () => modal.showModal()));
+
+  // run once on first load
+window.addEventListener('DOMContentLoaded', router);
+
+// run again whenever the hash changes (navigation)
+window.addEventListener('hashchange', router);
+
 }
 
 
@@ -606,8 +615,10 @@ function renderAbout(container) {
       </div>
     </section>
   `;
+  
 }
 
 function renderNotFound(container) {
   container.innerHTML = `<section class="section"><h1>Not found</h1><p>That page doesn’t exist. Try <a href="#/">Home</a>.</p></section>`;
 }
+
