@@ -1498,6 +1498,9 @@ fluent-design-system-provider { display:block; width:100%; }
   text-decoration: none;
 }
 
+.logo{
+  justify-content: center;
+}
 .breadcrumbs a:hover {
   text-decoration: none;
 }
